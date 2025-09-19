@@ -1,5 +1,6 @@
 "use client";
 
+import { Mail, MapPinHouse, Phone } from "lucide-react";
 import React, { useState } from "react";
 
 const ContactSection = () => {
@@ -104,15 +105,15 @@ const ContactSection = () => {
           {/* Contact Info */}
           <div className="flex flex-wrap gap-6 mt-10 text-gray-600">
             <div className="flex items-center gap-3">
-              <img src="/icons/phone.svg" alt="Phone" className="w-8 h-8" />
+              <Phone />
               <span className="text-base font-medium">+123-456-7890</span>
             </div>
             <div className="flex items-center gap-3">
-              <img src="/icons/email.svg" alt="Email" className="w-8 h-8" />
+              <Mail />
               <span className="text-base font-medium">hello@laluna.com</span>
             </div>
             <div className="flex items-center gap-3">
-              <img src="/icons/location.svg" alt="Location" className="w-8 h-8" />
+              <MapPinHouse />
               <span className="text-base font-medium">123 Beauty Street, City</span>
             </div>
           </div>

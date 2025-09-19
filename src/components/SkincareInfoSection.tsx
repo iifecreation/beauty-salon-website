@@ -2,7 +2,7 @@ import React from 'react';
 
 const SkincareInfoSection = () => {
   return (
-    <section className="mt-[90px] max-md:mt-16">
+    <section className="mt-[90px] max-md:mt-16 max-w-7xl mx-auto">
       <h2 className="text-foreground text-[64px] font-light leading-tight tracking-[-3.2px] mb-8 max-md:text-[40px]">
         Professional Techniques &<br />
         Beauty Mastery

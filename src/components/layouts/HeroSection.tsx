@@ -10,7 +10,7 @@ function HeroSection() {
   </h1>
 
   {/* Decorative Sparkle + Illustration Placeholder */}
-  <div className="flex flex-col md:flex-row items-center justify-center mt-10 w-full max-w-6xl gap-8">
+  <div className="flex flex-col md:flex-row items-center justify-center mt-10 w-full max-w-7xl gap-8">
     <div className="w-full md:w-2/3 h-64 bg-gray-200 rounded-3xl"></div>
     <div className="w-full md:w-1/3 h-64 bg-gray-200 rounded-3xl"></div>
   </div>
@@ -23,7 +23,11 @@ function HeroSection() {
   </p>
 
   {/* Counters */}
-  <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
+  <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl">
+    <div className="flex flex-col items-center border rounded-lg p-6">
+      <span className="text-2xl font-semibold">50K+</span>
+      <p className="text-sm text-gray-600 mt-1">Happy Clients</p>
+    </div>
     <div className="flex flex-col items-center border rounded-lg p-6">
       <span className="text-2xl font-semibold">50K+</span>
       <p className="text-sm text-gray-600 mt-1">Happy Clients</p>
