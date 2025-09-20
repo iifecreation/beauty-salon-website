@@ -8,7 +8,6 @@ const AdminDashboard = () => {
   return (
     <AdminLayout currentPage="dashboard">
       <Dashboard />
-      helo
     </AdminLayout>
   );
 };

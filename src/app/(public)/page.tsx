@@ -1,6 +1,7 @@
 import AboutHomeSection from "@/components/AboutSection";
 import AwardsSection from "@/components/AwardsSection";
 import ContactSection from "@/components/ContactSection";
+import FAQSection from "@/components/FAQSection";
 import AboutSection from "@/components/layouts/AboutSection";
 import HeroSection from "@/components/layouts/HeroSection";
 import ProductsSection from "@/components/ProductsSection";
@@ -15,6 +16,7 @@ export default function Home() {
       <SkincareInfoSection  />
       <ProductsSection  />
       <AwardsSection />
+      <FAQSection />
       <ContactSection />
     </main>
   );

@@ -3,19 +3,12 @@ import { z } from "zod";
 export const courseSchema = z.object({
   title: z.string().min(3).max(200),
   description: z.string().min(10),
-  price: z.number().nonnegative(),
+  content: z.string().min(10),
+  category: z.string().min(3),
+  price: z.string().min(3),
   duration: z.string().min(1),
+  location: z.enum(["online", "physical"]),
   level: z.enum(["Beginner", "Intermediate", "Advanced"]),
-  image: z.string().url()
-});
-
-export const productSchema = z.object({
-  name: z.string().min(2),
-  description: z.string().min(5),
-  price: z.number().nonnegative(),
-  category: z.enum(["Makeup", "Hair", "Pedicure", "Manicure", "Nails"]),
-  stock: z.number().int().nonnegative(),
-  image: z.string().url()
 });
 
 export const serviceSchema = z.object({
@@ -24,7 +17,8 @@ export const serviceSchema = z.object({
   price: z.number().nonnegative(),
   duration: z.string().min(1),
   category: z.enum(["Makeup", "Hair", "Pedicure", "Manicure", "Nails"]),
-  image: z.string().url()
+  location: z.string().min(1),
+  content: z.string().min(1),
 });
 
 export const paymentSchema = z.object({

@@ -10,6 +10,8 @@ import {
   LogOut,
   User
 } from 'lucide-react';
+import api from '@/lib/api';
+import { useRouter } from 'next/navigation';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
@@ -18,14 +20,29 @@ interface AdminLayoutProps {
 
 const AdminLayout: React.FC<AdminLayoutProps> = ({ children, currentPage }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const router = useRouter();
 
   const navigationItems = [
     { name: 'Dashboard', href: '/money-smile/art/home', icon: LayoutDashboard, current: currentPage === 'dashboard' },
-    { name: 'Products', href: '/money-smile/art/home/products', icon: Package, current: currentPage === 'products' },
     { name: 'Courses', href: '/money-smile/art/home/courses', icon: BookOpen, current: currentPage === 'courses' },
     { name: 'Services', href: '/money-smile/art/home/services', icon: Settings, current: currentPage === 'services' },
     { name: 'Payments', href: '/money-smile/art/home/payments', icon: CreditCard, current: currentPage === 'payments' }
   ];
+
+  const handleLogout = async () => {
+    try {
+      await api.post("/admin/auth/logout"); // deletes refreshToken cookie server-side
+
+      // Clear tokens and user info
+      localStorage.removeItem("accessToken");
+      sessionStorage.clear();
+
+      // Redirect to login
+      router.push("/money-smile/art/auth/login");
+    } catch (err) {
+      console.error("Logout failed:", err);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -88,7 +105,9 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, currentPage }) => {
               <div className="text-xs text-muted-foreground">admin@laluna.com</div>
             </div>
           </div>
-          <button className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <button 
+            onClick={handleLogout}
+            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors cursor-pointer">
             <LogOut className="w-4 h-4" />
             Sign out
           </button>

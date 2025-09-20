@@ -3,15 +3,7 @@
 import React from 'react'
 import { usePathname } from 'next/navigation';
 
-function CartIcon() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-shopping-cart">
-      <circle cx="9" cy="21" r="1" />
-      <circle cx="20" cy="21" r="1" />
-      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h7.72a2 2 0 0 0 2-1.61L23 6H6" />
-    </svg>
-  );
-}
+
 
 function Header() {
   const pathname = usePathname();
@@ -53,12 +45,6 @@ function Header() {
           Home
         </a>
         <a
-          href="/products"
-          className={`text-sm px-3 mb-4 md:mb-0 ${pathname === '/products' ? 'rounded-full border border-black font-medium' : 'hover:text-black'}`}
-        >
-          Products
-        </a>
-        <a
           href="/courses"
           className={`text-sm px-3 mb-4 md:mb-0 ${pathname === '/courses' ? 'rounded-full border border-black font-medium' : 'hover:text-black'}`}
         >
@@ -76,15 +62,21 @@ function Header() {
         >
           Work
         </a>
-        {/* Cart Icon for Mobile */}
-        <button className="md:hidden mt-6 flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">
-          <CartIcon />
+        <a
+          href="/about"
+          className={`text-sm px-3 mb-4 md:mb-0 ${pathname === '/work' ? 'rounded-full border border-black font-medium' : 'hover:text-black'}`}
+        >
+          About
+        </a>
+        {/* Call to Action Button for Mobile */}
+        <button className="md:hidden mt-6 px-5 py-2 bg-black text-white text-sm rounded-full shadow hover:bg-gray-900">
+          Get Started
         </button>
       </nav>
 
-      {/* Cart Icon for Desktop */}
-      <button className="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">
-        <CartIcon />
+      {/* Call to Action Button for Desktop */}
+      <button className="hidden md:block px-5 py-2 bg-black text-white text-sm rounded-full shadow hover:bg-gray-900">
+        Get Started
       </button>
 
       {/* Overlay for mobile menu */}

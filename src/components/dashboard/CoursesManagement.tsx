@@ -1,167 +1,327 @@
-import React, { useState } from 'react';
-import { Plus, Edit, Trash2, Search, Clock, Users } from 'lucide-react';
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { Plus, Edit, Trash2, Clock, Users, Loader } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import RichTextEditor from "../layouts/RichTextEditor";
+import api from "@/lib/api";
+import { getErrorMessage } from "@/lib/getErrorMessage";
+import { toast } from "sonner";
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from "@/components/ui/alert-dialog";
+
+
+// ✅ Zod Schema
+const courseSchema = z.object({
+  title: z.string().min(2, "Name is required"),
+  category: z.string().min(2, "Category is required"),
+  price: z.number().min(1, "Price is required"),
+  duration: z.string().min(1, "Duration is required"),
+  level: z.enum(["Beginner", "Intermediate", "Advanced"]).refine((val) => !!val, {
+    message: "Level is required",
+  }),
+  location: z.enum(["online", "physical"]).refine((val) => !!val, {
+    message: "Location is required",
+  }),
+  description: z.string().min(10, "Description must be at least 10 characters"),
+  content: z.string().min(10, "Content must be at least 10 characters"),
+  image: z.any().optional(),
+});
+
+type CourseForm = z.infer<typeof courseSchema> & {
+  _id?: string;
+  students?: number;
+  status?: string;
+  image?: string;
+};
 
 const CoursesManagement = () => {
   const [showForm, setShowForm] = useState(false);
-  const [editingCourse, setEditingCourse] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [editingCourse, setEditingCourse] = useState<CourseForm | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+  const [courses, setCourses] = useState<CourseForm[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [fetchLoading, setFetchLoading] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
+  const [deleteId, setDeleteId] = useState<string | null>(null);
 
-  const [courses, setCourses] = useState([
-    {
-      id: 1,
-      name: 'Professional Makeup Artistry',
-      category: 'Makeup',
-      price: '$1,299',
-      duration: '12 weeks',
-      students: 24,
-      status: 'Active',
-      level: 'Beginner to Advanced'
+
+  // ✅ React Hook Form with Zod
+  const {
+    register,
+    handleSubmit,
+    reset,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm<CourseForm>({
+    resolver: zodResolver(courseSchema),
+    defaultValues: {
+      title: "",
+      category: "",
+      price: 0,
+      duration: "",
+      level: "Beginner",
+      description: "",
+      content: "",
+      location: "online",
     },
-    {
-      id: 2,
-      name: 'Nail Art & Design Mastery',
-      category: 'Nail Care',
-      price: '$899',
-      duration: '8 weeks',
-      students: 18,
-      status: 'Active',
-      level: 'All Levels'
-    },
-    {
-      id: 3,
-      name: 'Eyelash Extension Certification',
-      category: 'Lashes',
-      price: '$799',
-      duration: '6 weeks',
-      students: 12,
-      status: 'Enrolling',
-      level: 'Beginner'
+  });
+
+  const fetchCourses = async () => {
+    setLoading(true);
+    try {
+      const res = await api.get("/admin/courses");
+      
+      const courseList = Array.isArray(res.data) ? res.data : res.data.data;
+      setCourses(courseList || []);
+    } catch (err) {
+      console.error("Failed to fetch courses", err);
+    } finally {
+      setLoading(false);
     }
-  ]);
+  };
 
-  const handleEdit = (course) => {
+  // ✅ Fetch courses
+  useEffect(() => {
+    fetchCourses();
+  }, []);
+
+  // ✅ Reset form when editing
+  useEffect(() => {
+    if (editingCourse) {
+      reset(editingCourse);
+      setPreview(editingCourse.image || null);
+    } else {
+      reset();
+      setPreview(null);
+      setFile(null);
+    }
+  }, [editingCourse, reset]);
+
+  // ✅ Image preview
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selected = e.target.files?.[0];
+    if (selected) {
+      setFile(selected);
+      const reader = new FileReader();
+      reader.onloadend = () => setPreview(reader.result as string);
+      reader.readAsDataURL(selected);
+    }
+  };
+
+  // ✅ Edit
+  const handleEdit = (course: CourseForm) => {
     setEditingCourse(course);
     setShowForm(true);
   };
 
-  const handleDelete = (id) => {
-    setCourses(courses.filter(c => c.id !== id));
+  // ✅ Delete
+  const handleDelete = async (id?: string | null) => {
+    if (!id) return;
+    try {
+      await api.delete(`/admin/courses?id=${id}`);
+      setCourses(courses.filter((c) => c._id !== id));
+    } catch (err) {
+      console.error("Failed to delete", err);
+    }
   };
 
-  const filteredCourses = courses.filter(course =>
-    course.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    course.category.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // ✅ Submit
+  const onSubmit = async (data: CourseForm) => {
+    setFetchLoading(true)
+    try {
+      const formData = new FormData();
+      Object.entries(data).forEach(([key, value]) => {
+        if (key !== "image") {
+          formData.append(key, value);
+        }
+      });
+      if (file) formData.append("image", file);
+
+      if (editingCourse?._id) {
+        const res = await api.put(`/admin/courses?id=${editingCourse._id}`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+      } else {
+        
+        await api.post("/admin/courses", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+      }
+
+      setShowForm(false);
+      setEditingCourse(null);
+      reset();
+      setFile(null);
+      setPreview(null);
+      toast.error("Course created successfully")
+      fetchCourses();
+    } catch (err) {
+      const message = getErrorMessage(err);
+      toast.error(message)
+      console.error("Failed to submit", err);
+    }
+    finally {
+      setFetchLoading(false)
+    }
+  };
 
   return (
     <div className="p-8 max-md:p-4">
+      {/* header */}
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-light text-foreground mb-2">Courses Management</h1>
-          <p className="text-muted-foreground">Manage your beauty courses and training programs</p>
+          <h1 className="text-3xl font-light">Courses Management</h1>
+          <p className="text-muted-foreground">
+            Manage your beauty courses and training programs
+          </p>
         </div>
-        <button 
-          onClick={() => {setShowForm(true); setEditingCourse(null);}}
-          className="bg-primary text-primary-foreground px-6 py-3 rounded-[var(--radius)] hover:opacity-90 transition-opacity flex items-center gap-2"
+        <button
+          onClick={() => {
+            setShowForm(true);
+            setEditingCourse(null);
+          }}
+          className="bg-primary text-primary-foreground px-6 py-3 rounded flex items-center gap-2"
         >
-          <Plus className="w-4 h-4" />
-          Add Course
+          <Plus className="w-4 h-4" /> Add Course
         </button>
       </div>
 
-      {/* Search Bar */}
-      <div className="relative mb-6">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-        <input
-          type="text"
-          placeholder="Search courses..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full pl-10 pr-4 py-3 border border-border rounded-[var(--radius)] bg-background focus:outline-none focus:ring-2 focus:ring-primary/20"
-        />
-      </div>
+      {/* loading */}
+      {loading && <p>Loading courses...</p>}
 
-      {/* Courses Grid */}
+      {/* empty state */}
+      {!loading && courses.length === 0 && (
+        <div className="text-center py-12 text-muted-foreground">
+          <p>No courses found. Try adding a new one.</p>
+        </div>
+      )}
+
+      {/* grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-        {filteredCourses.map((course) => (
-          <div key={course.id} className="bg-card border border-border rounded-[var(--radius)] p-6 hover:shadow-lg transition-shadow">
-            <div className="flex justify-between items-start mb-4">
-              <span className={`px-3 py-1 rounded text-xs font-medium ${
-                course.status === 'Active' ? 'bg-green-100 text-green-800' :
-                course.status === 'Enrolling' ? 'bg-blue-100 text-blue-800' :
-                'bg-gray-100 text-gray-800'
-              }`}>
-                {course.status}
+        {courses.map((course) => (
+          <div key={course._id} className="bg-card border rounded p-6">
+            {course.image && (
+              <img
+                src={course.image}
+                alt={course.title ?? "Course"}
+                className="w-full h-40 object-cover rounded mb-4"
+              />
+            )}
+            <div className="flex justify-between mb-4">
+              <span className="px-3 py-1 rounded text-xs font-medium bg-gray-100 text-gray-800">
+                {course.status || "Draft"}
               </span>
-              <div className="flex items-center gap-2">
+              <div className="flex gap-2">
                 <button
                   onClick={() => handleEdit(course)}
-                  className="p-2 text-primary hover:bg-primary/10 rounded-[var(--radius)] transition-colors"
+                  className="p-2 text-primary hover:bg-primary/10 rounded"
                 >
                   <Edit className="w-4 h-4" />
                 </button>
-                <button
-                  onClick={() => handleDelete(course.id)}
-                  className="p-2 text-red-600 hover:bg-red-50 rounded-[var(--radius)] transition-colors"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </button>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <button
+                      onClick={() => setDeleteId(course._id ?? null)}
+                      className="p-2 text-red-600 hover:bg-red-50 rounded"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This action will permanently delete the course. This cannot be undone.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel onClick={() => setDeleteId(null)}>Cancel</AlertDialogCancel>
+                      <AlertDialogAction
+                        onClick={() => {
+                          handleDelete(deleteId);
+                          setDeleteId(null);
+                        }}
+                        className="bg-red-600 hover:bg-red-700 text-white"
+                      >
+                        Delete
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+
               </div>
             </div>
-
-            <h3 className="text-lg font-medium text-foreground mb-2">{course.name}</h3>
-            <p className="text-sm text-muted-foreground mb-4">{course.category} • {course.level}</p>
-
+            <h3 className="text-lg font-medium">{course.title ?? "Untitled"}</h3>
+            <p className="text-sm text-muted-foreground mb-4">
+              {course.category} • {course.level}
+            </p>
             <div className="space-y-3 mb-4">
-              <div className="flex items-center justify-between">
+              <div className="flex justify-between">
                 <span className="text-sm text-muted-foreground">Price</span>
-                <span className="font-medium text-foreground">{course.price}</span>
+                <span className="font-medium">{course.price}</span>
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex justify-between">
                 <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                  <Clock className="w-4 h-4" />
-                  Duration
+                  <Clock className="w-4 h-4" /> Duration
                 </div>
-                <span className="text-sm text-foreground">{course.duration}</span>
+                <span className="text-sm">{course.duration}</span>
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex justify-between">
                 <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                  <Users className="w-4 h-4" />
-                  Students
+                  <Users className="w-4 h-4" /> Students
                 </div>
-                <span className="text-sm text-foreground">{course.students}</span>
+                <span className="text-sm">{course.students || 0}</span>
               </div>
             </div>
-
-            <button className="w-full bg-accent text-accent-foreground py-2 px-4 rounded-[var(--radius)] hover:opacity-90 transition-opacity text-sm">
+            <button className="w-full bg-accent text-accent-foreground py-2 rounded">
               View Details
             </button>
           </div>
         ))}
       </div>
 
-      {/* Add/Edit Course Form Modal */}
+      {/* form modal */}
       {showForm && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-background rounded-[var(--radius)] p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto">
-            <h2 className="text-xl font-medium text-foreground mb-4">
-              {editingCourse ? 'Edit Course' : 'Add New Course'}
+          <div className="bg-background rounded p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <h2 className="text-xl font-medium mb-4">
+              {editingCourse ? "Edit Course" : "Add New Course"}
             </h2>
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+              {/* name */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Course Name</label>
+                <label className="block text-sm font-medium mb-2">Name</label>
                 <input
-                  type="text"
-                  defaultValue={editingCourse?.name}
-                  className="w-full p-3 border border-border rounded-[var(--radius)] bg-background focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  {...register("title")}
                   placeholder="Enter course name"
+                  className="w-full p-2 border rounded bg-background"
                 />
+                {errors.title && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.title.message}
+                  </p>
+                )}
               </div>
+
+              {/* category */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Category</label>
+                <label className="block text-sm font-medium mb-2">Category</label>
                 <select
-                  defaultValue={editingCourse?.category}
-                  className="w-full p-3 border border-border rounded-[var(--radius)] bg-background focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  {...register("category")}
+                  className="w-full p-3 border border-border rounded bg-background focus:outline-none focus:ring-2 focus:ring-primary/20"
                 >
                   <option value="">Select category</option>
                   <option value="Makeup">Makeup</option>
@@ -169,71 +329,150 @@ const CoursesManagement = () => {
                   <option value="Lashes">Lashes</option>
                   <option value="Pedicure">Pedicure</option>
                   <option value="Eyebrows">Eyebrows</option>
+                  <option value="Facial">Facial</option>
                 </select>
+                {errors.category && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.category.message}
+                  </p>
+                )}
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Price</label>
-                  <input
-                    type="text"
-                    defaultValue={editingCourse?.price}
-                    className="w-full p-3 border border-border rounded-[var(--radius)] bg-background focus:outline-none focus:ring-2 focus:ring-primary/20"
-                    placeholder="$0.00"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-foreground mb-2">Duration</label>
-                  <input
-                    type="text"
-                    defaultValue={editingCourse?.duration}
-                    className="w-full p-3 border border-border rounded-[var(--radius)] bg-background focus:outline-none focus:ring-2 focus:ring-primary/20"
-                    placeholder="8 weeks"
-                  />
-                </div>
-              </div>
+
+              {/* location */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Level</label>
+                <label className="block text-sm font-medium mb-2">Location</label>
                 <select
-                  defaultValue={editingCourse?.level}
-                  className="w-full p-3 border border-border rounded-[var(--radius)] bg-background focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  {...register("location")}
+                  className="w-full p-2 border rounded bg-background"
+                >
+                  <option value="">Select location</option>
+                  <option value="online">Online</option>
+                  <option value="physical">Physical</option>
+                </select>
+                {errors.location && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.location.message}
+                  </p>
+                )}
+              </div>
+
+
+              {/* price */}
+              <div>
+                <label className="block text-sm font-medium mb-2">Price</label>
+                <input
+                  type="number"
+                  {...register("price", { valueAsNumber: true })}
+                  placeholder="Enter price (e.g. 200)"
+                  className="w-full p-2 border rounded bg-background"
+                />
+                {errors.price && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.price.message}
+                  </p>
+                )}
+              </div>
+
+              {/* duration */}
+              <div>
+                <label className="block text-sm font-medium mb-2">Duration</label>
+                <input
+                  {...register("duration")}
+                  placeholder="Enter duration (e.g. 6 weeks)"
+                  className="w-full p-2 border rounded bg-background"
+                />
+                {errors.duration && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.duration.message}
+                  </p>
+                )}
+              </div>
+
+              {/* level */}
+              <div>
+                <label className="block text-sm font-medium mb-2">Level</label>
+                <select
+                  {...register("level")}
+                  className="w-full p-2 border rounded bg-background"
                 >
                   <option value="">Select level</option>
                   <option value="Beginner">Beginner</option>
                   <option value="Intermediate">Intermediate</option>
                   <option value="Advanced">Advanced</option>
-                  <option value="All Levels">All Levels</option>
-                  <option value="Beginner to Advanced">Beginner to Advanced</option>
                 </select>
+                {errors.level && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.level.message}
+                  </p>
+                )}
               </div>
+
+              {/* description */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Description</label>
+                <label className="block text-sm font-medium mb-2">Description</label>
                 <textarea
-                  rows={3}
-                  className="w-full p-3 border border-border rounded-[var(--radius)] bg-background focus:outline-none focus:ring-2 focus:ring-primary/20"
-                  placeholder="Course description and what students will learn"
+                  {...register("description")}
+                  placeholder="Write a short description of the course"
+                  className="w-full p-2 border rounded bg-background"
                 />
+                {errors.description && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.description.message}
+                  </p>
+                )}
               </div>
+
+              {/* image */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2">Requirements</label>
-                <textarea
-                  rows={2}
-                  className="w-full p-3 border border-border rounded-[var(--radius)] bg-background focus:outline-none focus:ring-2 focus:ring-primary/20"
-                  placeholder="Course requirements and prerequisites"
+                <label className="block text-sm font-medium mb-2">Course Image</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="w-full p-2 border rounded bg-background"
                 />
+                {preview && (
+                  <img
+                    src={preview}
+                    alt="Preview"
+                    className="mt-3 w-full h-40 object-cover rounded border"
+                  />
+                )}
               </div>
+
+              {/* content */}
+              <div>
+                <label className="block text-sm font-medium mb-2">Course Content</label>
+                <RichTextEditor
+                  value={watch("content") || ""}
+                  placeholder="Enter detailed course content..."
+                  onChange={(content) => setValue("content", content)}
+                />
+                {errors.content && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.content.message}
+                  </p>
+                )}
+              </div>
+
+              {/* buttons */}
               <div className="flex gap-3 pt-4">
                 <button
                   type="button"
                   onClick={() => setShowForm(false)}
-                  className="flex-1 border border-border py-3 px-4 rounded-[var(--radius)] hover:bg-accent/10 transition-colors"
+                  className="flex-1 border py-3 rounded hover:bg-accent/10"
                 >
                   Cancel
                 </button>
                 <button
+                  disabled={fetchLoading}
                   type="submit"
-                  className="flex-1 bg-primary text-primary-foreground py-3 px-4 rounded-[var(--radius)] hover:opacity-90 transition-opacity"
+                  className="flex-1 bg-primary text-primary-foreground py-3 rounded hover:opacity-90 flex items-center justify-center gap-2"
                 >
-                  {editingCourse ? 'Update' : 'Add'} Course
+                  {fetchLoading && (
+                    <Loader className="animate-spin w-5 h-5" />
+                  )}
+                  {editingCourse ? "Update" : "Add"} Course
                 </button>
               </div>
             </form>
