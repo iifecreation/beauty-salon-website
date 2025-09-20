@@ -5,7 +5,7 @@ export const courseSchema = z.object({
   description: z.string().min(10),
   content: z.string().min(10),
   category: z.string().min(3),
-  price: z.string().min(3),
+  price: z.string().min(1),
   duration: z.string().min(1),
   location: z.enum(["online", "physical"]),
   level: z.enum(["Beginner", "Intermediate", "Advanced"]),
@@ -14,9 +14,9 @@ export const courseSchema = z.object({
 export const serviceSchema = z.object({
   name: z.string().min(2),
   description: z.string().min(5),
-  price: z.number().nonnegative(),
+  price: z.string().min(1),
   duration: z.string().min(1),
-  category: z.enum(["Makeup", "Hair", "Pedicure", "Manicure", "Nails"]),
+  category: z.enum(["Makeup", "Nails", "Lashes", "Pedicure", "Manicure", "Eyebrows", "Facial", "Hair"]),
   location: z.string().min(1),
   content: z.string().min(1),
 });

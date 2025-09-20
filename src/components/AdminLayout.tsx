@@ -26,7 +26,8 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, currentPage }) => {
     { name: 'Dashboard', href: '/money-smile/art/home', icon: LayoutDashboard, current: currentPage === 'dashboard' },
     { name: 'Courses', href: '/money-smile/art/home/courses', icon: BookOpen, current: currentPage === 'courses' },
     { name: 'Services', href: '/money-smile/art/home/services', icon: Settings, current: currentPage === 'services' },
-    { name: 'Payments', href: '/money-smile/art/home/payments', icon: CreditCard, current: currentPage === 'payments' }
+    { name: 'Students', href: '/money-smile/art/home/students', icon: CreditCard, current: currentPage === 'students' },
+    { name: 'Booking', href: '/money-smile/art/home/booking', icon: CreditCard, current: currentPage === 'booking' }
   ];
 
   const handleLogout = async () => {

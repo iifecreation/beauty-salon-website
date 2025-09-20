@@ -154,11 +154,13 @@ const CoursesManagement = () => {
         const res = await api.put(`/admin/courses?id=${editingCourse._id}`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
+        toast.success("Course updated successfully");
       } else {
         
         await api.post("/admin/courses", formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
+        toast.success("Course added successfully");
       }
 
       setShowForm(false);
@@ -166,7 +168,6 @@ const CoursesManagement = () => {
       reset();
       setFile(null);
       setPreview(null);
-      toast.error("Course created successfully")
       fetchCourses();
     } catch (err) {
       const message = getErrorMessage(err);
@@ -200,7 +201,9 @@ const CoursesManagement = () => {
       </div>
 
       {/* loading */}
-      {loading && <p>Loading courses...</p>}
+      {loading && <div className="col-span-1 md:col-span-2 lg:col-span-3 flex justify-center items-center h-40">
+                  <Loader className="animate-spin w-10 h-10 text-primary" />
+                </div>}
 
       {/* empty state */}
       {!loading && courses.length === 0 && (
@@ -300,7 +303,7 @@ const CoursesManagement = () => {
             <h2 className="text-xl font-medium mb-4">
               {editingCourse ? "Edit Course" : "Add New Course"}
             </h2>
-            <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+            <form className="space-y-4" onSubmit={handleSubmit(onSubmit)} method="POST" encType="multipart/form-data">
               {/* name */}
               <div>
                 <label className="block text-sm font-medium mb-2">Name</label>
@@ -355,7 +358,6 @@ const CoursesManagement = () => {
                   </p>
                 )}
               </div>
-
 
               {/* price */}
               <div>

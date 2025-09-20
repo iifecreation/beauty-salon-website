@@ -1,15 +1,61 @@
-import React from 'react';
-import { Users, BookOpen, Package, Settings, DollarSign, TrendingUp } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Users, BookOpen, Package, Settings, DollarSign, TrendingUp, Loader } from 'lucide-react';
+import api from '@/lib/api';
 
 const AdminDashboard = () => {
-  const stats = [
-    { title: 'Total Products', value: '24', icon: Package, change: '+12%' },
-    { title: 'Active Courses', value: '8', icon: BookOpen, change: '+8%' },
-    { title: 'Services', value: '12', icon: Settings, change: '+5%' },
-    { title: 'Revenue', value: '$15,420', icon: DollarSign, change: '+23%' },
-    { title: 'Students', value: '156', icon: Users, change: '+18%' },
-    { title: 'Growth', value: '32%', icon: TrendingUp, change: '+7%' }
-  ];
+  const [stats, setStats] = useState([
+    { title: 'Total Bookings', value: 0, icon: Package, change: '+0%' },
+    { title: 'Total Courses', value: 0, icon: BookOpen, change: '+0%' },
+    { title: 'Total Services', value: 0, icon: Settings, change: '+0%' },
+    { title: 'Total Students', value: 0, icon: Users, change: '+0%' },
+  ]);
+  const [loading, setLoading] = useState(false);
+
+  const fetchStats = async () => {
+    setLoading(true);
+    try {
+      const res = await api.get("/admin/stats");
+      const statsObj = res.data && res.data.data ? res.data.data : res.data;
+      console.log(statsObj);
+      
+      if (statsObj && typeof statsObj === 'object') {
+        setStats([
+          {
+            title: 'Total Bookings',
+            value: statsObj.totalBookings ?? 0,
+            icon: Package,
+            change: statsObj.bookingChange ?? '+0%'
+          },
+          {
+            title: 'Total Courses',
+            value: statsObj.totalCourses ?? 0,
+            icon: BookOpen,
+            change: statsObj.courseChange ?? '+0%'
+          },
+          {
+            title: 'Total Services',
+            value: statsObj.totalServices ?? 0,
+            icon: Settings,
+            change: statsObj.serviceChange ?? '+0%'
+          },
+          {
+            title: 'Total Students',
+            value: statsObj.totalStudents ?? 0,
+            icon: Users,
+            change: statsObj.studentChange ?? '+0%'
+          },
+        ]);
+      }
+    } catch (err) {
+      console.error("Failed to fetch stats", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchStats();
+  }, []);
 
   const recentOrders = [
     { id: '001', customer: 'Sarah Johnson', course: 'Makeup Artistry', amount: '$1,200', status: 'Completed' },
@@ -27,20 +73,26 @@ const AdminDashboard = () => {
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        {stats.map((stat, index) => (
-          <div key={index} className="bg-card border border-border rounded-[var(--radius)] p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-muted-foreground">{stat.title}</p>
-                <p className="text-2xl font-semibold text-foreground">{stat.value}</p>
-                <p className="text-sm text-green-600">{stat.change} from last month</p>
-              </div>
-              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                <stat.icon className="w-6 h-6 text-primary" />
+        {loading ? (
+          <div className="col-span-1 md:col-span-2 lg:col-span-3 flex justify-center items-center h-40">
+            <Loader className="animate-spin w-10 h-10 text-primary" />
+          </div>
+        ) : (
+          stats.map((stat, index) => (
+            <div key={index} className="bg-card border border-border rounded-[var(--radius)] p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-muted-foreground">{stat.title}</p>
+                  <p className="text-2xl font-semibold text-foreground">{stat.value}</p>
+                  <p className="text-sm text-green-600">{stat.change}</p>
+                </div>
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                  <stat.icon className="w-6 h-6 text-primary" />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
 
       {/* Recent Activity */}
