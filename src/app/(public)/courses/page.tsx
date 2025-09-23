@@ -1,5 +1,7 @@
 import AwardsSection from '@/components/AwardsSection';
 import Gallery from '@/components/Gallery';
+import ChooseAcademy from '@/components/layouts/ChooseAcademy';
+import HeroBannerTwo from '@/components/layouts/HeroBannerTwo';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
@@ -61,10 +63,10 @@ const Courses = () => {
   ]
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="mx-auto max-w-[1440px] lg:px-16 py-7 px-4 sm:px-10">
       <div className="pt-[45px]">
-        
-        <main className="px-[70px] max-md:px-5 mt-20">
+        <HeroBannerTwo title='Our Services'/>
+        <main className="mt-20">
           {/* Hero Section */}
           <section className="text-center mb-16">
             <h1 className="text-[64px] font-light leading-tight tracking-[-3.2px] text-foreground mb-6 max-md:text-[40px]">
@@ -141,46 +143,7 @@ const Courses = () => {
           <Gallery images={images} />
 
           {/* Why Choose Us */}
-          <section className="text-center mb-20">
-            <h2 className="text-[48px] font-light leading-tight tracking-[-2.4px] text-foreground mb-8">
-              Why Choose Laluna Academy?
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="space-y-4">
-                <div className="w-16 h-16 bg-primary rounded-full mx-auto flex items-center justify-center">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary-foreground">
-                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                    <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-                  </svg>
-                </div>
-                <h3 className="text-xl font-medium text-foreground">Expert Instructors</h3>
-                <p className="text-muted-foreground">Learn from industry professionals with years of experience</p>
-              </div>
-              <div className="space-y-4">
-                <div className="w-16 h-16 bg-primary rounded-full mx-auto flex items-center justify-center">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary-foreground">
-                    <path d="M14 9V5a3 3 0 0 0-6 0v4"/>
-                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
-                    <circle cx="12" cy="16" r="1"/>
-                  </svg>
-                </div>
-                <h3 className="text-xl font-medium text-foreground">Certification</h3>
-                <p className="text-muted-foreground">Get industry-recognized certifications upon completion</p>
-              </div>
-              <div className="space-y-4">
-                <div className="w-16 h-16 bg-primary rounded-full mx-auto flex items-center justify-center">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary-foreground">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                    <circle cx="9" cy="7" r="4"/>
-                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                  </svg>
-                </div>
-                <h3 className="text-xl font-medium text-foreground">Career Support</h3>
-                <p className="text-muted-foreground">Get job placement assistance and career guidance</p>
-              </div>
-            </div>
-          </section>
+          <ChooseAcademy />
         </main>
       </div>
     </div>

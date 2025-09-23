@@ -1,14 +1,17 @@
 
-import AwardsSection from "@/components/AwardsSection";
+import ContactSection from "@/components/ContactSection";
+import AwardsBanner from "@/components/layouts/AwardsSection";
 import HeroBannerThree from "@/components/layouts/HeroBannerThree";
+import OurValues from "@/components/layouts/OurValues";
 import TeamSection from "@/components/layouts/TeamSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 
 export default function Home() {
   return (
     <main>
       <HeroBannerThree image="https://images.squarespace-cdn.com/content/v1/632f77d9215661299a94de50/1711379231800-PXH3KAGW5MR3DMEAL1C0/IMG_2994.jpeg" />
 
-      <section className="max-w-7xl mx-auto">
+      <section className="mx-auto max-w-[1440px] lg:px-16 py-7 px-4 sm:px-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
           
           {/* Left Column - Short About Us */}
@@ -43,7 +46,18 @@ export default function Home() {
 
       <TeamSection />
 
-      <AwardsSection />
+      <div>
+
+        <OurValues />
+
+        <AwardsBanner />
+
+        <TestimonialsSection />
+
+        <ContactSection />
+      </div>
+
+
     </main>
   );
 }

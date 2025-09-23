@@ -3,11 +3,11 @@
 import React from "react";
 
 interface HeroBannerTwoProps {
-  image: string;
+  image?: string;
   title: string;
 }
 
-const HeroBannerTwo: React.FC<HeroBannerTwoProps> = ({ image, title }) => {
+const HeroBannerTwo: React.FC<HeroBannerTwoProps> = ({ image ="https://images.squarespace-cdn.com/content/v1/632f77d9215661299a94de50/1711379231800-PXH3KAGW5MR3DMEAL1C0/IMG_2994.jpeg", title }) => {
   return (
     <div className="relative w-full max-w-[1408px] mb-12">
       <svg
@@ -32,8 +32,8 @@ const HeroBannerTwo: React.FC<HeroBannerTwoProps> = ({ image, title }) => {
       </svg>
 
       {/* Overlay text */}
-      <div className="absolute bottom-0 left-0 p-8 text-white">
-        <h2 className="text-black font-bold text-5xl md:text-7xl leading-tight md:leading-[80px]">
+      <div className="absolute top-0 left-0 text-white">
+        <h2 className="text-warm-brown-700 font-instrument font-medium text-xl lg:text-[80px] md:text-4xl sm:text-3xl">
           {title}
         </h2>
       </div>

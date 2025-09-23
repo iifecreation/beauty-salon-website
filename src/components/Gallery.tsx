@@ -14,13 +14,13 @@ export default function GalleryMosaic({ images }: GalleryProps) {
   const imgs = [
     ...images,
     // fallback placeholders (won't be requested if user provided enough images)
-    "https://picsum.photos/800/1000",
-    "https://picsum.photos/900/700",
-    "https://picsum.photos/800/600",
-    "https://picsum.photos/700/900",
-    "https://picsum.photos/600/600",
-    "https://picsum.photos/900/500",
-    "https://picsum.photos/1000/800",
+    "/images/gallery/1.jpg",
+    "/images/gallery/2.jpg",
+    "/images/gallery/8.jpg",
+    "/images/gallery/4.jpeg",
+    "/images/gallery/5.webp",
+    "/images/gallery/6.jpg",
+    "/images/gallery/7.webp",
   ].slice(0, 8);
 
   const layoutOrder = {

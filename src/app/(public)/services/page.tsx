@@ -1,4 +1,7 @@
+import ChooseServices from '@/components/layouts/ChooseServices';
 import HeroBanner from '@/components/layouts/HeroBanner';
+import OurValues from '@/components/layouts/OurValues';
+import TestimonialsSection from '@/components/TestimonialsSection';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react'
@@ -70,118 +73,72 @@ function Services() {
     }
   ];
   return (
-    <div className='max-w-7xl mx-auto'>
-        <HeroBanner title='Our Services'/>
-        {/* Services Grid */}
-        <section className="mb-20">
-            <h2 className="text-[48px] font-light leading-tight tracking-[-2.4px] text-foreground mb-12 text-center">
-              Our Services
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.map((service, index) => (
-                <div key={index} className="bg-card border border-border rounded-[var(--radius)] p-6 group hover:shadow-lg transition-shadow">
-                  <div className="relative aspect-square rounded-[24px] overflow-hidden mb-5">
-                    <svg
-                        width="100%"
-                        height="100%"
-                        viewBox="0 0 396 399"
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="absolute inset-0 w-full h-full"
-                        >
-                        <defs>
-                            <clipPath id="productCardClip">
-                            <path d="M236 0C258.091 0 276 17.9086 276 40V80C276 102.091 293.909 120 316 120H356C378.091 120 396 137.909 396 160V359C396 381.091 378.091 399 356 399H40C17.9086 399 0 381.091 0 359V40C0 17.9086 17.9086 0 40 0H236Z" />
-                            </clipPath>
-                        </defs>
+    <div className='mx-auto max-w-[1440px] lg:px-16 py-7 px-4 sm:px-10'>
 
-                        {/* Image inside clipPath */}
-                        <foreignObject
-                            width="396"
-                            height="399"
-                            clipPath="url(#productCardClip)"
-                        >
-                            <Image
-                            src="https://images.squarespace-cdn.com/content/v1/632f77d9215661299a94de50/1711379231800-PXH3KAGW5MR3DMEAL1C0/IMG_2994.jpeg"
-                            alt="worlds"
-                            width={396}
-                            height={399}
-                            className="w-full h-full object-cover"
-                            />
-                        </foreignObject>
-                    </svg>
+      <HeroBanner title='Our Services'/>
 
-                    {/* Arrow Icon (top-right corner) */}
-                    <div className="absolute top-3 right-3 bg-background/80 rounded-full p-2">
-                    <ArrowUpRight className="w-5 h-5 text-foreground" />
-                    </div>
-                </div>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground font-medium">{service.category}</span>
-                      <span className="text-sm bg-accent px-2 py-1 rounded">{service.duration}</span>
-                    </div>
-                    <h3 className="text-xl font-medium text-foreground">{service.name}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
-                    <div className="flex items-center justify-between pt-4">
-                      <span className="text-2xl font-light text-foreground">{service.price}</span>
-                      <button className="bg-primary text-primary-foreground px-6 py-2 rounded-[var(--radius)] hover:opacity-90 transition-opacity">
-                        Book Now
-                      </button>
-                    </div>
+      {/* Services Grid */}
+      <section className="mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <div key={index} className="bg-card border border-border rounded-[var(--radius)] p-6 group hover:shadow-lg transition-shadow">
+                <div className="relative aspect-square rounded-[24px] overflow-hidden mb-5">
+                  <svg
+                      width="100%"
+                      height="100%"
+                      viewBox="0 0 396 399"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="absolute inset-0 w-full h-full"
+                      >
+                      <defs>
+                          <clipPath id="productCardClip">
+                          <path d="M236 0C258.091 0 276 17.9086 276 40V80C276 102.091 293.909 120 316 120H356C378.091 120 396 137.909 396 160V359C396 381.091 378.091 399 356 399H40C17.9086 399 0 381.091 0 359V40C0 17.9086 17.9086 0 40 0H236Z" />
+                          </clipPath>
+                      </defs>
+
+                      {/* Image inside clipPath */}
+                      <foreignObject
+                          width="396"
+                          height="399"
+                          clipPath="url(#productCardClip)"
+                      >
+                          <Image
+                          src="https://images.squarespace-cdn.com/content/v1/632f77d9215661299a94de50/1711379231800-PXH3KAGW5MR3DMEAL1C0/IMG_2994.jpeg"
+                          alt="worlds"
+                          width={396}
+                          height={399}
+                          className="w-full h-full object-cover"
+                          />
+                      </foreignObject>
+                  </svg>
+
+                  {/* Arrow Icon (top-right corner) */}
+                  <div className="absolute top-3 right-3 bg-background/80 rounded-full p-2">
+                  <ArrowUpRight className="w-5 h-5 text-foreground" />
+                  </div>
+              </div>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-muted-foreground font-medium">{service.category}</span>
+                    <span className="text-sm bg-accent px-2 py-1 rounded">{service.duration}</span>
+                  </div>
+                  <h3 className="text-xl font-medium text-foreground">{service.name}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
+                  <div className="flex items-center justify-between pt-4">
+                    <span className="text-2xl font-light text-foreground">{service.price}</span>
+                    <button className="bg-primary text-primary-foreground px-6 py-2 rounded-[var(--radius)] hover:opacity-90 transition-opacity">
+                      Book Now
+                    </button>
                   </div>
                 </div>
-              ))}
-            </div>
-        </section>
+              </div>
+            ))}
+          </div>
+      </section>
       {/* Why Choose Our Services */}
-          <section className="text-center mb-20">
-            <h2 className="text-[48px] font-light leading-tight tracking-[-2.4px] text-foreground mb-8">
-              Why Choose Laluna Services?
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <div className="space-y-4">
-                <div className="w-16 h-16 bg-primary rounded-full mx-auto flex items-center justify-center">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary-foreground">
-                    <path d="M9 12l2 2 4-4"/>
-                    <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
-                    <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
-                    <path d="M13 12h3l2-2-2-2h-3"/>
-                    <path d="M11 12H8l-2-2 2-2h3"/>
-                  </svg>
-                </div>
-                <h3 className="text-lg font-medium text-foreground">Certified Professionals</h3>
-                <p className="text-muted-foreground text-sm">All our artists are certified and experienced</p>
-              </div>
-              <div className="space-y-4">
-                <div className="w-16 h-16 bg-primary rounded-full mx-auto flex items-center justify-center">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary-foreground">
-                    <path d="M12 2v20M2 12h20"/>
-                  </svg>
-                </div>
-                <h3 className="text-lg font-medium text-foreground">Premium Products</h3>
-                <p className="text-muted-foreground text-sm">We use only high-quality, professional-grade products</p>
-              </div>
-              <div className="space-y-4">
-                <div className="w-16 h-16 bg-primary rounded-full mx-auto flex items-center justify-center">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary-foreground">
-                    <circle cx="12" cy="12" r="10"/>
-                    <polyline points="12,6 12,12 16,14"/>
-                  </svg>
-                </div>
-                <h3 className="text-lg font-medium text-foreground">Flexible Scheduling</h3>
-                <p className="text-muted-foreground text-sm">Book appointments that fit your schedule</p>
-              </div>
-              <div className="space-y-4">
-                <div className="w-16 h-16 bg-primary rounded-full mx-auto flex items-center justify-center">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary-foreground">
-                    <path d="M20 6 9 17l-5-5"/>
-                  </svg>
-                </div>
-                <h3 className="text-lg font-medium text-foreground">Satisfaction Guarantee</h3>
-                <p className="text-muted-foreground text-sm">100% satisfaction guarantee on all services</p>
-              </div>
-            </div>
-          </section>
+      <ChooseServices />
+
+      <TestimonialsSection />
     </div>
   )
 }

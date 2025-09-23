@@ -8,7 +8,7 @@ interface HeroBannerThreeProps {
 
 const HeroBannerThree: React.FC<HeroBannerThreeProps> = ({ image }) => {
   return (
-    <section className="relative w-full max-w-[1282px] mx-auto py-7 space-y-8">
+    <section className="relative mx-auto max-w-[1440px] lg:px-16 py-7 px-4 sm:px-10 space-y-8">
       <h1 className="text-7xl font-normal ">
         Best Beauty Services And Professional Training.
       </h1>

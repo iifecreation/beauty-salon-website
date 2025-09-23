@@ -333,6 +333,7 @@ const CoursesManagement = () => {
                   <option value="Pedicure">Pedicure</option>
                   <option value="Eyebrows">Eyebrows</option>
                   <option value="Facial">Facial</option>
+                  <option value="Facial">Hair</option>
                 </select>
                 {errors.category && (
                   <p className="text-red-500 text-sm mt-1">

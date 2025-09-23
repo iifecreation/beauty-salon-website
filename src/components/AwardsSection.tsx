@@ -1,5 +1,4 @@
 import React from 'react';
-import AwardSlider from './AwardSlider';
 
 const AwardsSection = () => {
 
@@ -10,7 +9,7 @@ const AwardsSection = () => {
       </h2>
       
       <div className="relati overflow-hidden">
-        <AwardSlider />
+
       </div>
     </section>
   );

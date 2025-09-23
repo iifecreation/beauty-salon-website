@@ -6,6 +6,7 @@ import AboutSection from "@/components/layouts/AboutSection";
 import HeroSection from "@/components/layouts/HeroSection";
 import ProductsSection from "@/components/ProductsSection";
 import SkincareInfoSection from "@/components/SkincareInfoSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <SkincareInfoSection  />
       <ProductsSection  />
       <AwardsSection />
+      <TestimonialsSection />
       <FAQSection />
       <ContactSection />
     </main>
