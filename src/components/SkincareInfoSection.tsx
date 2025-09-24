@@ -13,7 +13,7 @@ const SkincareInfoSection = () => {
           <div className="flex gap-6 mb-12 max-md:flex-col">
             {/* Small Rectangle */}
             <div className="w-64 max-md:w-full">
-              <div className="bg-secondary h-60 rounded-[var(--radius)] max-md:h-40"></div>
+              <div className="h-60 rounded-[var(--radius)] max-md:h-40 bg-no-repeat bg-cover bg-center" style={{backgroundImage: "url('/images/img2.jpg')"}}></div>
             </div>
             
             {/* Content Next to Rectangle */}
@@ -52,7 +52,7 @@ const SkincareInfoSection = () => {
         
         {/* Large Shape */}
         <div className="w-[400px] max-md:w-full max-md:mt-8">
-          <div className="bg-secondary w-full h-96 rounded-tl-[200px] rounded-[var(--radius)] max-md:h-64"></div>
+          <div className="w-full h-96 rounded-tl-[200px] rounded-[var(--radius)] max-md:h-64 bg-no-repeat bg-cover bg-center" style={{backgroundImage: "url('/images/img3.jpg')"}}></div>
         </div>
       </div>
     </section>

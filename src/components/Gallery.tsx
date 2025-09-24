@@ -1,346 +1,84 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { Search, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { motion, useAnimation } from "framer-motion";
 
 type GalleryProps = {
-  images: string[]; // supply at least 7 images (component will gracefully fallback)
+  images: string[];
 };
 
-export default function GalleryMosaic({ images }: GalleryProps) {
-  // ensure we have at least 7 placeholders
-  const imgs = [
-    ...images,
-    // fallback placeholders (won't be requested if user provided enough images)
-    "/images/gallery/1.jpg",
-    "/images/gallery/2.jpg",
-    "/images/gallery/8.jpg",
-    "/images/gallery/4.jpeg",
-    "/images/gallery/5.webp",
-    "/images/gallery/6.jpg",
-    "/images/gallery/7.webp",
-  ].slice(0, 8);
+export default function StudentGallery({ images }: GalleryProps) {
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const controls = useAnimation();
 
-  const layoutOrder = {
-    topLeftSmall: 0,
-    leftTall: 1,
-    centerLarge: 2,
-    rightTall: 3,
-    bottomLeftSmall: 4,
-    bottomCenterMedium: 5,
-    bottomRightSmall: 6,
-    extra: 7,
-  };
+  // Duplicate images to simulate infinite scroll
+  const allImages = [...images, ...images];
 
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-
-  // keyboard nav for lightbox
+  // Auto-scroll effect
   useEffect(() => {
-    function onKey(e: KeyboardEvent) {
-      if (selectedIndex === null) return;
-      if (e.key === "Escape") setSelectedIndex(null);
-      if (e.key === "ArrowRight")
-        setSelectedIndex((s) => (s === null ? null : (s + 1) % imgs.length));
-      if (e.key === "ArrowLeft")
-        setSelectedIndex((s) =>
-          s === null ? null : (s - 1 + imgs.length) % imgs.length
-        );
-    }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [selectedIndex, imgs.length]);
+    let animationFrame: number;
+    let scrollPos = 0;
 
-  const open = (i: number) => setSelectedIndex(i);
-  const close = () => setSelectedIndex(null);
-  const next = () =>
-    setSelectedIndex((s) => (s === null ? null : (s + 1) % imgs.length));
-  const prev = () =>
-    setSelectedIndex((s) => (s === null ? null : (s - 1 + imgs.length) % imgs.length));
+    const scroll = () => {
+      if (carouselRef.current) {
+        scrollPos += 0.5; // scroll speed
+        if (scrollPos >= carouselRef.current.scrollWidth / 2) {
+          scrollPos = 0;
+        }
+        carouselRef.current.scrollLeft = scrollPos;
+      }
+      animationFrame = requestAnimationFrame(scroll);
+    };
+
+    animationFrame = requestAnimationFrame(scroll);
+    return () => cancelAnimationFrame(animationFrame);
+  }, []);
 
   return (
-    <>
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* header (optional) */}
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-3xl font-light">
-            Journey in <span className="italic font-serif">Asia</span>
-          </h2>
-        </div>
+    <section className="w-full py-12 md:py-20 bg-white">
+      <div className="mx-auto">
+        <h2 className="text-[32px] md:text-[48px] font-light mb-8 text-center font-sentient">
+          Meet Our <span className="italic font-bold text-test-brown-800">Students</span>
+        </h2>
 
-        {/* MOSAIC GRID */}
-        <div className="gallery-grid">
-          {/* top-left small */}
-          <div
-            className="item item-top-left"
-            role="button"
-            onClick={() => open(layoutOrder.topLeftSmall)}
-            onKeyDown={() => open(layoutOrder.topLeftSmall)}
-            tabIndex={0}
-            aria-label="Open image 1"
+        <div className="relative overflow-hidden">
+          <motion.div
+            ref={carouselRef}
+            className="flex space-x-6 overflow-x-auto no-scrollbar"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
           >
-            <div className="img-wrap">
-              <Image src={imgs[layoutOrder.topLeftSmall]} alt="" fill className="object-cover" />
-              <div className="overlay">
-                <Search className="icon" />
-              </div>
-            </div>
-          </div>
-
-          {/* center large */}
-          <div
-            className="item item-center-large"
-            role="button"
-            onClick={() => open(layoutOrder.centerLarge)}
-            tabIndex={0}
-            aria-label="Open main image"
-          >
-            <div className="img-wrap">
-              <Image src={imgs[layoutOrder.centerLarge]} alt="" fill className="object-cover" />
-              <div className="overlay">
-                <Search className="icon" />
-              </div>
-            </div>
-          </div>
-
-          {/* right tall */}
-          <div
-            className="item item-right-tall"
-            role="button"
-            onClick={() => open(layoutOrder.rightTall)}
-            tabIndex={0}
-            aria-label="Open image 4"
-          >
-            <div className="img-wrap">
-              <Image src={imgs[layoutOrder.rightTall]} alt="" fill className="object-cover" />
-              <div className="overlay">
-                <Search className="icon" />
-              </div>
-            </div>
-          </div>
-
-          {/* left tall (middle left) */}
-          <div
-            className="item item-left-tall"
-            role="button"
-            onClick={() => open(layoutOrder.leftTall)}
-            tabIndex={0}
-            aria-label="Open image 2"
-          >
-            <div className="img-wrap">
-              <Image src={imgs[layoutOrder.leftTall]} alt="" fill className="object-cover" />
-              <div className="overlay">
-                <Search className="icon" />
-              </div>
-            </div>
-          </div>
-
-          {/* bottom-left small */}
-          <div
-            className="item item-bottom-left"
-            role="button"
-            onClick={() => open(layoutOrder.bottomLeftSmall)}
-            tabIndex={0}
-            aria-label="Open image 5"
-          >
-            <div className="img-wrap">
-              <Image src={imgs[layoutOrder.bottomLeftSmall]} alt="" fill className="object-cover" />
-              <div className="overlay">
-                <Search className="icon" />
-              </div>
-            </div>
-          </div>
-
-          {/* bottom-center medium */}
-          <div
-            className="item item-bottom-center"
-            role="button"
-            onClick={() => open(layoutOrder.bottomCenterMedium)}
-            tabIndex={0}
-            aria-label="Open image 6"
-          >
-            <div className="img-wrap">
-              <Image src={imgs[layoutOrder.bottomCenterMedium]} alt="" fill className="object-cover" />
-              <div className="overlay">
-                <Search className="icon" />
-              </div>
-            </div>
-          </div>
-
-          {/* bottom-right small */}
-          <div
-            className="item item-bottom-right"
-            role="button"
-            onClick={() => open(layoutOrder.bottomRightSmall)}
-            tabIndex={0}
-            aria-label="Open image 7"
-          >
-            <div className="img-wrap">
-              <Image src={imgs[layoutOrder.bottomRightSmall]} alt="" fill className="object-cover" />
-              <div className="overlay">
-                <Search className="icon" />
-              </div>
-            </div>
-          </div>
+            {allImages.map((src, idx) => (
+              <motion.div
+                key={idx}
+                className="relative w-[80vw] sm:w-[50vw] md:w-[33.33vw] lg:w-[25vw] h-[320px] flex-shrink-0 rounded-xl overflow-hidden shadow-md"
+                whileHover={{ scale: 1.05 }}
+              >
+                <Image
+                  src={src}
+                  alt={`Student ${idx + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 80vw"
+                />
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
 
-      {/* LIGHTBOX */}
-      <AnimatePresence>
-        {selectedIndex !== null && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={close}
-          >
-            <motion.div
-              className="relative w-full max-w-5xl px-4"
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.95 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="relative w-full aspect-[16/9]">
-                <Image
-                  src={imgs[selectedIndex]}
-                  alt=""
-                  fill
-                  className="object-contain rounded-lg"
-                />
-              </div>
-
-              {/* close */}
-              <button
-                aria-label="Close"
-                className="lightbox-btn top-right"
-                onClick={close}
-                title="Close (Esc)"
-              >
-                <X />
-              </button>
-
-              {/* prev */}
-              <button
-                aria-label="Previous"
-                className="lightbox-btn left-center"
-                onClick={prev}
-                title="Previous (Left arrow)"
-              >
-                <ChevronLeft />
-              </button>
-
-              {/* next */}
-              <button
-                aria-label="Next"
-                className="lightbox-btn right-center"
-                onClick={next}
-                title="Next (Right arrow)"
-              >
-                <ChevronRight />
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Styles */}
+      {/* Hide scrollbars */}
       <style jsx>{`
-        .gallery-grid {
-          display: grid;
-          gap: 18px;
-          /* desktop mosaic (3 cols) */
-          grid-template-columns: 1fr 2fr 1fr;
-          grid-template-rows: 220px 220px 220px;
-          grid-template-areas:
-            "topLeft centerLarge rightTall"
-            "leftTall centerLarge rightTall"
-            "bottomLeft bottomCenter bottomRight";
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
         }
-
-        .item { border-radius: 14px; overflow: hidden; position: relative; }
-        .img-wrap { position: relative; width: 100%; height: 100%; }
-        .overlay {
-          position: absolute;
-          inset: 0;
-          background: rgba(0, 0, 0, 0);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: background 180ms ease, opacity 180ms ease;
-          opacity: 0;
-        }
-        .item:hover .overlay,
-        .item:focus .overlay {
-          background: rgba(0, 0, 0, 0.45);
-          opacity: 1;
-        }
-        .icon { color: white; width: 44px; height: 44px; }
-
-        /* assign grid areas */
-        .item-top-left { grid-area: topLeft; }
-        .item-center-large { grid-area: centerLarge; border-radius: 18px; }
-        .item-right-tall { grid-area: rightTall; }
-        .item-left-tall { grid-area: leftTall; }
-        .item-bottom-left { grid-area: bottomLeft; }
-        .item-bottom-center { grid-area: bottomCenter; }
-        .item-bottom-right { grid-area: bottomRight; }
-
-        /* LIGHTBOX BUTTONS */
-        .lightbox-btn {
-          position: absolute;
-          background: rgba(255,255,255,0.95);
-          border-radius: 999px;
-          padding: 8px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-          border: none;
-          cursor: pointer;
-        }
-        .lightbox-btn.top-right { right: 8px; top: -32px; }
-        .lightbox-btn.left-center { left: -28px; top: 50%; transform: translateY(-50%); }
-        .lightbox-btn.right-center { right: -28px; top: 50%; transform: translateY(-50%); }
-
-        /* Responsive adjustments */
-        @media (max-width: 1024px) {
-          .gallery-grid {
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 220px 220px 220px 220px;
-            grid-template-areas:
-              "centerLarge centerLarge"
-              "topLeft rightTall"
-              "leftTall bottomCenter"
-              "bottomLeft bottomRight";
-          }
-          .lightbox-btn.top-right { top: 12px; right: 12px; }
-          .lightbox-btn.left-center { left: 8px; }
-          .lightbox-btn.right-center { right: 8px; }
-        }
-
-        @media (max-width: 640px) {
-          .gallery-grid {
-            grid-template-columns: 1fr;
-            grid-auto-rows: 220px;
-            grid-template-areas:
-              "centerLarge"
-              "topLeft"
-              "rightTall"
-              "leftTall"
-              "bottomLeft"
-              "bottomCenter"
-              "bottomRight";
-          }
-          .lightbox-btn.left-center,
-          .lightbox-btn.right-center {
-            display: none;
-          }
-          .lightbox-btn.top-right { top: 8px; right: 8px; }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
-    </>
+    </section>
   );
 }

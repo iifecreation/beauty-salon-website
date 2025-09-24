@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import {
   Nunito,
-  Cinzel,
   Instrument_Serif,
 } from "next/font/google";
 import "./globals.css";
@@ -12,13 +11,6 @@ import { Toaster } from "@/components/ui/sonner";
 const nunito = Nunito({
   subsets: ["latin"],
   variable: "--font-nunito",
-  display: "swap",
-});
-
-// ✅ Optional fonts as variables
-const cinzel = Cinzel({
-  subsets: ["latin"],
-  variable: "--font-cinzel",
   display: "swap",
 });
 
@@ -40,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${nunito.variable} ${cinzel.variable} ${instrumentSerif.variable}`}>
+    <html lang="en" className={`${nunito.variable} ${instrumentSerif.variable}`}>
       <body className="font-nunito antialiased">
         <Toaster position="top-right" />
         {children}

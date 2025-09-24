@@ -32,28 +32,23 @@ const Award: React.FC<AwardsBannerProps> = ({ awards }) => {
 
   return (
     <div className="relative w-full">
-      <svg
-        viewBox="0 0 1283 472"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-auto block"
-        preserveAspectRatio="xMidYMid slice"
-      >
-        <defs>
-          <clipPath id="hero-banner-clip" clipPathUnits="userSpaceOnUse">
-            <path d="M1171 167C1171 180.807 1182.19 192 1196 192H1258C1271.81 192 1283 203.193 1283 217V447C1283 460.807 1271.81 472 1258 472H25C11.1929 472 0 460.807 0 447V110C0 96.1929 11.1929 85 25 85H183C196.807 85 208 73.8071 208 60V25C208 11.1929 219.193 0 233 0H1146C1159.81 0 1171 11.1929 1171 25V167Z" />
-          </clipPath>
-        </defs>
-
-        <image
-          href={currentAward.image}
-          width="1283"
-          height="472"
-          clipPath="url(#hero-banner-clip)"
-          preserveAspectRatio="xMidYMid slice"
+      <div className="relative w-full overflow-hidden rounded-xl">
+        {/* Award Image */}
+        <img
+          src={currentAward.image}
+          alt={currentAward.title}
+          className="w-full h-[472px] object-cover rounded-xl"
         />
 
-        {/* Overlay inside SVG */}
-        <foreignObject x="0" y="300" width="1283" height="172">
+        {/* Award Year Overlay */}
+        <div className="absolute top-0 left-0 bg-white text-black px-4 py-2 rounded">
+          <h2 className="text-sm md:text-lg font-semibold leading-tight">
+            YEAR 2025 <br /> AWARD
+          </h2>
+        </div>
+
+        {/* Text Overlay */}
+        <div className="absolute bottom-0 left-0 w-full bg-black/40 text-white p-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentAward.id}
@@ -61,43 +56,34 @@ const Award: React.FC<AwardsBannerProps> = ({ awards }) => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
-              className="w-full h-full flex flex-col justify-end p-8 bg-black/40 text-white"
+              className="w-full"
             >
               <h2 className="text-3xl md:text-5xl font-medium ">
                 {currentAward.user}
               </h2>
               <p className="text-lg md:text-2xl mt-2 text-gray-300">
-                {currentAward.user} <br />
+                {currentAward.age} years old <br />
                 {currentAward.country}
               </p>
             </motion.div>
           </AnimatePresence>
-        </foreignObject>
-      </svg>
-
-      {/* Navigation buttons */}
-      <div className="flex flex-col absolute top-0 right-10 gap-5">
-        <div className="flex flex-col gap-2">
-          <button
-            onClick={prevAward}
-            className="bg-warm-brown-400 px-3 py-7 rounded-full shadow-lg hover:bg-warm-brown-700 transition"
-          >
-            <MoveUp className="w-6 h-6 text-white" />
-          </button>
-          <button
-            onClick={nextAward}
-            className="bg-warm-brown-400 px-3 py-7 rounded-full shadow-lg hover:bg-warm-brown-700 transition"
-          >
-            <MoveDown className="w-6 h-6 text-white" />
-          </button>
         </div>
       </div>
 
-      {/* Left title */}
-      <div className="flex flex-col absolute top-0 left-0 gap-5">
-        <h2 className="text-2xl md:text-3xl font-instrument">
-          YEAR 2025 <br /> AWARD
-        </h2>
+      {/* Navigation Buttons */}
+      <div className="flex flex-col absolute top-1/2 -translate-y-1/2 right-10 bg-gray-50/40 border border-white justify-between h-10/12 gap-3 z-40 rounded-full py-3 px-3">
+        <button
+          onClick={prevAward}
+          className="py-7 rounded-full transition"
+        >
+          <MoveUp className="w-6 h-6 text-white" />
+        </button>
+        <button
+          onClick={nextAward}
+          className="py-7 rounded-full transition"
+        >
+          <MoveDown className="w-6 h-6 text-white" />
+        </button>
       </div>
     </div>
   );

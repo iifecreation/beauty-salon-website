@@ -6,7 +6,7 @@ const AboutHomeSection = () => {
       <div className="flex flex-col md:flex-row gap-12 md:gap-8 lg:gap-16">
         {/* Left Column - Skincare Info */}
         <div className="w-full md:w-1/4 order-2 md:order-1">
-          <div className="bg-secondary h-40 rounded-[var(--radius)] mb-6 rounded-tr-[100px]"></div>
+          <div className="h-40 rounded-[var(--radius)] mb-6 rounded-tr-[100px] bg-no-repeat bg-cover bg-center" style={{backgroundImage: "url('/images/img1.jpg')"}}></div>
           <h3 className="text-foreground text-[22px] md:text-[28px] font-normal leading-tight tracking-[-1.1px] md:tracking-[-1.4px] mb-6">
             Beauty Education with
             <br />
@@ -32,7 +32,7 @@ const AboutHomeSection = () => {
 
         {/* Center Column - Large Circle */}
         <div className="w-full md:w-1/3 order-1 md:order-2 flex justify-center items-center mb-8 md:mb-0">
-          <div className="bg-secondary w-full h-[650px] md:w-80 md:h-[431px] rounded-se-full rounded-ss-full rounded-b-lg"></div>
+          <div className="bg-no-repeat bg-cover bg-center w-full h-[650px] md:w-80 md:h-[431px] rounded-se-full rounded-ss-full rounded-b-lg" style={{backgroundImage: "url('/images/pexels-karolina-grabowska-6954840.jpg')"}}></div>
         </div>
 
         {/* Right Column - Main Content */}

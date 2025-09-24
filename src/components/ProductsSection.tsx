@@ -1,5 +1,7 @@
 import React from 'react';
 import ProductCard from './ProductCard';
+import { courses } from '@/contant/courses';
+import Image from 'next/image';
 
 const ProductsSection = () => {
   const products = [
@@ -35,16 +37,35 @@ const ProductsSection = () => {
       </div>
       
       {/* Products Grid */}
-      <div className="grid grid-cols-3 gap-6 max-md:grid-cols-1 max-md:gap-4">
-        {products.map((product, index) => (
-          <ProductCard
-            key={index}
-            name={product.name}
-            price={product.price}
-            image={productImage}
-          />
-        ))}
-      </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+          {courses.map((course, index) => (
+            <div key={index} className="bg-card border border-border rounded-[var(--radius)] p-6 group hover:shadow-lg transition-shadow">
+              <div className="relative aspect-square rounded-[24px] overflow-hidden mb-5">
+                <Image
+                src="https://images.squarespace-cdn.com/content/v1/632f77d9215661299a94de50/1711379231800-PXH3KAGW5MR3DMEAL1C0/IMG_2994.jpeg"
+                alt="worlds"
+                width={396}
+                height={399}
+                className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-muted-foreground font-medium">{course.duration}</span>
+                  <span className="text-sm bg-accent px-2 py-1 rounded">{course.level}</span>
+                </div>
+                <h3 className="text-xl font-medium text-foreground">{course.name}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{course.description}</p>
+                <div className="flex items-center justify-between pt-4">
+                  <span className="text-2xl font-light text-foreground">{course.price}</span>
+                  <button className="bg-primary text-primary-foreground px-6 py-2 rounded-[var(--radius)] hover:opacity-90 transition-opacity">
+                    Enroll Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
     </section>
   );
 };

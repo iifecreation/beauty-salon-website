@@ -46,18 +46,18 @@ export default function ChooseAcademy() {
   ];
 
   return (
-    <section className="text-center mb-20">
-      <h2 className="text-[32px] md:text-[48px] font-instrument text-warm-brown-700 font-medium mb-12">
-        Why Choose Laluna Academy?
+    <section className="text-center py-12 md:py-20">
+      <h2 className="text-[32px] md:text-[48px] font-light mb-8 text-center font-instrument">
+        Why Choose <span className="italic font-bold text-test-brown-800">Laluna Academy?</span>
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-4 md:px-0">
         {reasons.map((item, idx) => (
           <div
             key={idx}
-            className="group rounded-xl p-6 shadow-sm bg-white text-gray-900 transition-transform transform hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg hover:bg-warm-brown-700 hover:text-white cursor-pointer space-y-4"
+            className="group rounded-xl p-6 shadow-sm bg-white text-gray-900 transition-transform transform hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg hover:bg-test-brown-800 hover:text-white cursor-pointer space-y-4"
           >
-            <div className="w-16 h-16 rounded-full mx-auto flex items-center justify-center bg-warm-brown-700 transition-colors group-hover:bg-white">
+            <div className="w-16 h-16 rounded-full mx-auto flex items-center justify-center bg-test-brown-800 transition-colors group-hover:bg-white">
               <svg
                 width="28"
                 height="28"

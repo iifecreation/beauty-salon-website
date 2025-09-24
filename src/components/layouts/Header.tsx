@@ -64,7 +64,7 @@ function Header() {
         </a>
         <a
           href="/about"
-          className={`text-sm px-3 mb-4 md:mb-0 ${pathname === '/work' ? 'rounded-full border border-black font-medium' : 'hover:text-black'}`}
+          className={`text-sm px-3 mb-4 md:mb-0 ${pathname === '/about' ? 'rounded-full border border-black font-medium' : 'hover:text-black'}`}
         >
           About
         </a>
@@ -75,7 +75,7 @@ function Header() {
       </nav>
 
       {/* Call to Action Button for Desktop */}
-      <button className="hidden md:block px-5 py-2 bg-black text-white text-sm rounded-full shadow hover:bg-gray-900">
+      <button className="hidden md:block px-5 py-2 bg-test-brown-800   text-white text-sm rounded-full shadow hover:bg-gray-900">
         Get Started
       </button>
 
