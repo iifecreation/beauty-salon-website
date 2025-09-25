@@ -1,12 +1,12 @@
 "use client"; 
 
-import AwardsSection from '@/components/AwardsSection';
 import Gallery from '@/components/Gallery';
 import Award from '@/components/layouts/Award';
 import ChooseAcademy from '@/components/layouts/ChooseAcademy';
 import HeroBannerTwo from '@/components/layouts/HeroBannerTwo';
 import { awardsData } from '@/contant/award';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 const Courses = () => {
@@ -30,8 +30,11 @@ const Courses = () => {
   useEffect(() => {
     fetch('/api/courses')
       .then(res => res.json())
-      .then(data => setCourses(data))
+      .then(data => {setCourses(data); console.log(data);})
       .finally(() => setLoading(false));
+
+      
+      
   }, []);
 
   return (
@@ -58,7 +61,10 @@ const Courses = () => {
             <div className="col-span-3 text-center text-muted-foreground">No courses found.</div>
           ) : (
             courses.map((course, index) => (
-              <div key={course._id || index} className="bg-card border border-border rounded-[var(--radius)] p-6 group hover:shadow-lg transition-shadow">
+              <div
+                key={course._id || index}
+                className="bg-card border border-border rounded-[var(--radius)] p-6 group hover:shadow-lg transition-shadow block"
+              >
                 <div className="relative aspect-square rounded-[24px] overflow-hidden mb-5">
                   <Image
                     src={course.image || "https://images.squarespace-cdn.com/content/v1/632f77d9215661299a94de50/1711379231800-PXH3KAGW5MR3DMEAL1C0/IMG_2994.jpeg"}
@@ -77,9 +83,13 @@ const Courses = () => {
                   <p className="text-muted-foreground text-sm leading-relaxed">{course.description}</p>
                   <div className="flex items-center justify-between pt-4">
                     <span className="text-2xl font-light text-foreground">{typeof course.price === 'number' ? `$${course.price}` : course.price}</span>
-                    <button className="bg-primary text-primary-foreground px-6 py-2 rounded-[var(--radius)] hover:opacity-90 transition-opacity">
+                    <Link 
+                      href={`/courses/${course._id}`}
+                      // href={{ pathname: `/courses/${course._id}`, query: { modal: '1' } }}
+                      scroll={false}
+                      className="bg-primary text-primary-foreground px-6 py-2 rounded-[var(--radius)] hover:opacity-90 transition-opacity">
                       Enroll Now
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
