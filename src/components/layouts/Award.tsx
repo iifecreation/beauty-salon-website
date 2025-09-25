@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 interface Award {
   id: number;
@@ -14,10 +15,13 @@ interface Award {
 
 interface AwardsBannerProps {
   awards: Award[];
+  className: string;
+  year: string;
   direction?: "left" | "right"; // NEW
+  scrollSpeed?: number;
 }
 
-const Award: React.FC<AwardsBannerProps> = ({ awards, direction = "left" }) => {
+const Award: React.FC<AwardsBannerProps> = ({ awards, direction = "left", className, year}) => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -25,36 +29,45 @@ const Award: React.FC<AwardsBannerProps> = ({ awards, direction = "left" }) => {
   const allAwards = [...awards, ...awards];
 
   useEffect(() => {
-    let animationFrame: number;
+  let animationFrame: number;
+  const container = carouselRef.current;
 
-    const scroll = () => {
-      if (carouselRef.current && !isHovered) {
-        const container = carouselRef.current;
-        const scrollWidth = container.scrollWidth / 2;
+  if (!container) return;
 
-        if (direction === "left") {
-          container.scrollLeft += 0.5;
-          if (container.scrollLeft >= scrollWidth) {
-            container.scrollLeft = 0;
-          }
-        } else {
-          container.scrollLeft -= 0.5;
-          if (container.scrollLeft <= 0) {
-            container.scrollLeft = scrollWidth;
-          }
+  const scrollWidth = container.scrollWidth / 2;
+
+  // If scrolling to the right, initialize scrollLeft to the midpoint
+  if (direction === "right") {
+    container.scrollLeft = scrollWidth;
+  }
+
+  const scroll = () => {
+    if (container && !isHovered) {
+      if (direction === "left") {
+        container.scrollLeft += 0.5;
+        if (container.scrollLeft >= scrollWidth) {
+          container.scrollLeft = 0;
+        }
+      } else {
+        container.scrollLeft -= 0.5;
+        if (container.scrollLeft <= 0) {
+          container.scrollLeft = scrollWidth;
         }
       }
+    }
 
-      animationFrame = requestAnimationFrame(scroll);
-    };
+    animationFrame = requestAnimationFrame(scroll);
+  };
 
     animationFrame = requestAnimationFrame(scroll);
     return () => cancelAnimationFrame(animationFrame);
   }, [isHovered, direction]);
 
 
+
   return (
     <section className="py-8 max-w-[1440px] mx-auto">
+      <h2 className={cn("px-4 sm:px-10 md:px-16 font-sentient text-xl md:text-2xl mb-7", className)}>Year {year} <span className="text-test-brown-800">Award</span></h2>
       <div
         className="relative overflow-hidden"
         onMouseEnter={() => setIsHovered(true)}
@@ -76,13 +89,6 @@ const Award: React.FC<AwardsBannerProps> = ({ awards, direction = "left" }) => {
                 fill
                 className="object-cover w-full h-full"
               />
-
-              {/* Top-left Year Tag */}
-              <div className="absolute top-4 left-4 bg-white text-black px-4 py-2 rounded z-10">
-                <h2 className="text-sm md:text-base font-semibold leading-tight">
-                  YEAR 2025 <br /> AWARD
-                </h2>
-              </div>
 
               {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />

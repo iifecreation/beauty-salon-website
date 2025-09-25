@@ -37,7 +37,7 @@ const CourseSchema = new Schema<ICourse>(
     status: {
       type: String,
       enum: ["active", "inactive"],
-      default: "inactive", // ✅ default set to "inactive"
+      default: "active", // ✅ default set to "inactive"
     },
     image: { type: String, required: true },
     imageId: { type: String, required: true },

@@ -36,7 +36,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ className }) 
   }, [isHovered]);
 
   return (
-    <section className={cn("py-20 bg-test-brown-50/50", className)}>
+    <section className={cn("py-20 bg-test-brown-50/50 max-w-[1440px] mx-auto", className)}>
       <div className="mb-12">
         <h2 className="text-[32px] md:text-[48px] font-instrument text-warm-brown-700 font-medium text-center">
           Testimonials
@@ -44,7 +44,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ className }) 
         <p className="text-center">Success Stories from Our Students and Clients</p>
       </div>
 
-      <div className="relative w-full max-w-7xl mx-auto px-4 py-10">
+      <div className="relative w-full py-10">
         <div
           className="relative overflow-hidden"
           onMouseEnter={() => setIsHovered(true)}
