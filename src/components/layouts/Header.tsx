@@ -69,15 +69,15 @@ function Header() {
           About
         </a>
         {/* Call to Action Button for Mobile */}
-        <button className="md:hidden mt-6 px-5 py-2 bg-black text-white text-sm rounded-full shadow hover:bg-gray-900">
-          Get Started
-        </button>
+        <a href='/contact' className="md:hidden mt-6 px-5 py-2 bg-black text-white text-sm rounded-full shadow hover:bg-gray-900">
+          Contact us
+        </a>
       </nav>
 
       {/* Call to Action Button for Desktop */}
-      <button className="hidden md:block px-5 py-2 bg-test-brown-800   text-white text-sm rounded-full shadow hover:bg-gray-900">
-        Get Started
-      </button>
+      <a href='/contact' className="hidden md:block px-5 py-2 bg-test-brown-800   text-white text-sm rounded-full shadow hover:bg-gray-900">
+        Contact us
+      </a>
 
       {/* Overlay for mobile menu */}
       {menuOpen && (

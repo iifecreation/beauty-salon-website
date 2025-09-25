@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { MoveUp, MoveDown } from "lucide-react";
+import React, { useRef, useEffect, useState } from "react";
+import Image from "next/image";
 
 interface Award {
   id: number;
@@ -15,77 +14,103 @@ interface Award {
 
 interface AwardsBannerProps {
   awards: Award[];
+  direction?: "left" | "right"; // NEW
 }
 
-const Award: React.FC<AwardsBannerProps> = ({ awards }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+const Award: React.FC<AwardsBannerProps> = ({ awards, direction = "left" }) => {
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
 
-  const prevAward = () => {
-    setCurrentIndex((prev) => (prev - 1 + awards.length) % awards.length);
-  };
+  // Duplicate the awards for infinite scroll effect
+  const allAwards = [...awards, ...awards];
 
-  const nextAward = () => {
-    setCurrentIndex((prev) => (prev + 1) % awards.length);
-  };
+  useEffect(() => {
+    let animationFrame: number;
 
-  const currentAward = awards[currentIndex];
+    const scroll = () => {
+      if (carouselRef.current && !isHovered) {
+        const container = carouselRef.current;
+        const scrollWidth = container.scrollWidth / 2;
+
+        if (direction === "left") {
+          container.scrollLeft += 0.5;
+          if (container.scrollLeft >= scrollWidth) {
+            container.scrollLeft = 0;
+          }
+        } else {
+          container.scrollLeft -= 0.5;
+          if (container.scrollLeft <= 0) {
+            container.scrollLeft = scrollWidth;
+          }
+        }
+      }
+
+      animationFrame = requestAnimationFrame(scroll);
+    };
+
+    animationFrame = requestAnimationFrame(scroll);
+    return () => cancelAnimationFrame(animationFrame);
+  }, [isHovered, direction]);
+
 
   return (
-    <div className="relative w-full">
-      <div className="relative w-full overflow-hidden rounded-xl">
-        {/* Award Image */}
-        <img
-          src={currentAward.image}
-          alt={currentAward.title}
-          className="w-full h-[472px] object-cover rounded-xl"
-        />
-
-        {/* Award Year Overlay */}
-        <div className="absolute top-0 left-0 bg-white text-black px-4 py-2 rounded">
-          <h2 className="text-sm md:text-lg font-semibold leading-tight">
-            YEAR 2025 <br /> AWARD
-          </h2>
-        </div>
-
-        {/* Text Overlay */}
-        <div className="absolute bottom-0 left-0 w-full bg-black/40 text-white p-8">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentAward.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-              className="w-full"
+    <section className="py-8 max-w-[1440px] mx-auto">
+      <div
+        className="relative overflow-hidden"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div
+          ref={carouselRef}
+          className="flex space-x-6 overflow-x-auto no-scrollbar"
+        >
+          {allAwards.map((award, index) => (
+            <div
+              key={`${award.id}-${index}`}
+              className="relative flex-shrink-0 w-[80vw] sm:w-[60vw] md:w-[33.33vw] lg:w-[25vw] h-[480px] rounded-xl overflow-hidden"
             >
-              <h2 className="text-3xl md:text-5xl font-medium ">
-                {currentAward.user}
-              </h2>
-              <p className="text-lg md:text-2xl mt-2 text-gray-300">
-                {currentAward.age} years old <br />
-                {currentAward.country}
-              </p>
-            </motion.div>
-          </AnimatePresence>
+              {/* Background Image */}
+              <Image
+                src={award.image}
+                alt={award.title}
+                fill
+                className="object-cover w-full h-full"
+              />
+
+              {/* Top-left Year Tag */}
+              <div className="absolute top-4 left-4 bg-white text-black px-4 py-2 rounded z-10">
+                <h2 className="text-sm md:text-base font-semibold leading-tight">
+                  YEAR 2025 <br /> AWARD
+                </h2>
+              </div>
+
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+
+              {/* Text Overlay at Bottom */}
+              <div className="absolute bottom-0 w-full px-4 py-6 text-white text-left z-10">
+                <h2 className="text-xl font-semibold">{award.user}</h2>
+                <p className="text-sm text-gray-300 mt-1">
+                  {award.age} years old<br />
+                  {award.country}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Navigation Buttons */}
-      <div className="flex flex-col absolute top-1/2 -translate-y-1/2 right-10 bg-gray-50/40 border border-white justify-between h-10/12 gap-3 z-40 rounded-full py-3 px-3">
-        <button
-          onClick={prevAward}
-          className="py-7 rounded-full transition"
-        >
-          <MoveUp className="w-6 h-6 text-white" />
-        </button>
-        <button
-          onClick={nextAward}
-          className="py-7 rounded-full transition"
-        >
-          <MoveDown className="w-6 h-6 text-white" />
-        </button>
-      </div>
-    </div>
+      {/* Hide scrollbars */}
+      <style jsx>{`
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
+    </section>
   );
 };
 

@@ -45,6 +45,7 @@ const AwardsBanner = () => {
       />
 
        <Award
+        direction="right"
         awards={[
           {
             id: 1,

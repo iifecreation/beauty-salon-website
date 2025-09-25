@@ -31,11 +31,11 @@ function HeroSection() {
   {/* Counters */}
   <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl">
     <div className="flex flex-col items-center border rounded-lg p-6">
-      <span className="text-2xl font-semibold">50K+</span>
-      <p className="text-sm text-gray-600 mt-1">Happy Clients</p>
+      <span className="text-2xl font-semibold">20K+</span>
+      <p className="text-sm text-gray-600 mt-1">Happy Students</p>
     </div>
     <div className="flex flex-col items-center border rounded-lg p-6">
-      <span className="text-2xl font-semibold">50K+</span>
+      <span className="text-2xl font-semibold">100K+</span>
       <p className="text-sm text-gray-600 mt-1">Happy Clients</p>
     </div>
     <div className="flex flex-col items-center border rounded-lg p-6">
@@ -48,17 +48,6 @@ function HeroSection() {
     </div>
   </div>
 
-  {/* Search + Discover Button */}
-  <div className="mt-10 flex w-full max-w-2xl">
-    <input
-      type="text"
-      placeholder="Search for makeup, nail care, pedicure..."
-      className="flex-1 border rounded-l-full px-4 py-3 text-sm text-gray-700 focus:outline-none"
-    />
-    <button className="px-6 py-3 bg-black text-white rounded-r-full text-sm font-medium hover:bg-gray-900">
-      Discover All
-    </button>
-  </div>
 </section>
 
   )

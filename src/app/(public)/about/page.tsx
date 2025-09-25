@@ -1,5 +1,4 @@
 
-import ContactSection from "@/components/ContactSection";
 import AwardsBanner from "@/components/layouts/AwardsSection";
 import HeroBannerThree from "@/components/layouts/HeroBannerThree";
 import OurValues from "@/components/layouts/OurValues";
@@ -54,7 +53,6 @@ export default function Home() {
 
         <TestimonialsSection />
 
-        <ContactSection />
       </div>
 
 
