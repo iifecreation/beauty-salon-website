@@ -11,12 +11,12 @@
 export const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: "Sofia Martinez",
+    name: "Emily",
     service: "Professional Makeup Course",
-    location: "Mexico City, Mexico",
+    location: "Spain",
     review:
       "The makeup course completely transformed my career. The trainers were patient, detailed, and showed us the artistry behind every brush stroke.",
-    image: "https://randomuser.me/api/portraits/women/65.jpg",
+    image: "/images/22/IMG-20250919-WA0029.jpg",
   },
   {
     id: 2,
@@ -38,12 +38,12 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: 4,
-    name: "Michael Brown",
+    name: "Lilly",
     service: "Makeup Masterclass",
-    location: "New York, USA",
+    location: "Guadalajara, Mexico",
     review:
       "The masterclass gave me confidence to start freelancing as a makeup artist. The academy is professional and inspiring.",
-    image: "https://randomuser.me/api/portraits/men/44.jpg",
+    image: "public/images/25/IMG-20250920-WA0003.jpg",
   },
   {
     id: 5,
@@ -92,11 +92,11 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: 10,
-    name: "Olivia Smith",
+    name: "Belinda",
     service: "Advanced Makeup Course",
-    location: "Miami, USA",
+    location: "Germany",
     review:
       "The advanced makeup course was challenging but rewarding. I feel fully prepared to take on clients confidently.",
-    image: "https://randomuser.me/api/portraits/women/57.jpg",
+    image: "/images/22/IMG-20250919-WA0028.jpg",
   },
 ];

@@ -15,13 +15,12 @@ export default function Home() {
           
           {/* Left Column - Short About Us */}
           <div className="md:col-span-1">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-xl md:text-base font-light text-gray-900 mb-4">
               About Us
             </h2>
-            <p className="text-gray-600 text-lg leading-relaxed">
-              Delivering excellence in <span className="font-semibold">beauty services </span> 
+            <p className="text-gray-600 text-lg md:text-3xl leading-relaxed font-sentient capitalize">
+              Delivering excellence <span className="font-semibold">beauty services </span> 
               and <span className="font-semibold">professional training</span> 
-              since 2024.
             </p>
           </div>
 

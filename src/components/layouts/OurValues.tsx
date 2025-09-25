@@ -30,7 +30,7 @@ export default function OurValues() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex justify-center items-center mb-8">
-          <h2 className="text-2xl text-center md:text-3xl font-semibold text-gray-900">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl text-center mb-2 font-sentient">
             Our Values
           </h2>
 

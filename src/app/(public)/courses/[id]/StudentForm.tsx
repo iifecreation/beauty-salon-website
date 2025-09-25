@@ -151,7 +151,7 @@ export default function StudentForm({ courseId, onSuccess }: { courseId: string;
       </div>
       {error && <div className="text-red-600 text-sm">{error}</div>}
       {success && <div className="text-green-600 text-sm">Registration successful!</div>}
-      <button type="submit" className="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:opacity-90 transition w-full" disabled={loading}>
+      <button type="submit" className="bg-test-brown-800 hover:bg-test-brown-800/80 rounded-full text-primary-foreground px-6 py-2 transition w-full" disabled={loading}>
         {loading ? "Submitting..." : "Submit"}
       </button>
     </form>

@@ -11,10 +11,10 @@ const AwardsBanner = () => {
 
   return (
     <section className="mb-20 pt-20 pb-10 max-w-[1440px] mx-auto">
-      <h2 className="text-[48px] font-light leading-tight tracking-[-2.4px] text-foreground text-center max-md:text-[32px] font-sentient">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl text-center mb-2 font-sentient">
         Awards & Recognition
       </h2>
-      <p className="max-w-2xl mx-auto text-center text-lg text-muted-foreground mb-10">
+      <p className="max-w-2xl mx-auto text-center text-base  text-muted-foreground mb-10">
         We are proud to celebrate our students' achievements. These awards recognize the hard work, talent, and dedication of those who have excelled in our training programs.
       </p>
 

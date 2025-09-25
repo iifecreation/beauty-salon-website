@@ -7,7 +7,6 @@ export interface IBooking extends Document {
   phone?: string;
   service: Types.ObjectId; // Reference to Service
   bookingDate: Date;
-  preferredMode: "Online" | "Physical";
   location?: string;
   status: "Pending" | "Confirmed" | "Completed" | "Cancelled";
   notes?: string;
@@ -32,12 +31,6 @@ const BookingSchema = new Schema<IBooking>(
     },
 
     bookingDate: { type: Date, required: true },
-
-    preferredMode: {
-      type: String,
-      enum: ["Online", "Physical"],
-      required: true,
-    },
 
     location: { type: String },
 

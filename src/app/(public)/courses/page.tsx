@@ -85,9 +85,8 @@ const Courses = () => {
                     <span className="text-2xl font-light text-foreground">{typeof course.price === 'number' ? `$${course.price}` : course.price}</span>
                     <Link 
                       href={`/courses/${course._id}`}
-                      // href={{ pathname: `/courses/${course._id}`, query: { modal: '1' } }}
                       scroll={false}
-                      className="bg-primary text-primary-foreground px-6 py-2 rounded-[var(--radius)] hover:opacity-90 transition-opacity">
+                      className="bg-test-brown-800 text-primary-foreground px-6 py-3 h-auto hover:opacity-90 transition-opacity hover:bg-test-brown-800/80 rounded-full">
                       Enroll Now
                     </Link>
                   </div>

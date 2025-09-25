@@ -57,12 +57,6 @@ function Header() {
           Services
         </a>
         <a
-          href="/work"
-          className={`text-sm px-3 mb-4 md:mb-0 ${pathname === '/work' ? 'rounded-full border border-black font-medium' : 'hover:text-black'}`}
-        >
-          Work
-        </a>
-        <a
           href="/about"
           className={`text-sm px-3 mb-4 md:mb-0 ${pathname === '/about' ? 'rounded-full border border-black font-medium' : 'hover:text-black'}`}
         >

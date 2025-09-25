@@ -43,12 +43,12 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="bg-secondary rounded-[var(--radius)] p-12 mb-20">
+    <section className="bg-secondary rounded-[var(--radius)] md:p-12 py-12 px-4 mb-20">
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-[48px] font-light leading-tight tracking-[-2.4px] text-foreground mb-8 text-center">
+        <h2 className="md:text-[48px] text-3xl font-light leading-tight tracking-[-2.4px] text-foreground mb-8 text-center">
           Frequently Asked Questions
         </h2>
-        <p className="text-muted-foreground text-center mb-12 text-lg">
+        <p className="text-muted-foreground text-center mb-12 md:text-lg text-base">
           Find answers to common questions about our beauty services, courses, and treatments.
         </p>
         

@@ -5,7 +5,7 @@ const AboutSection = () => {
     <section className="relative w-full bg-gray-50 px-8 py-16 flex flex-col md:flex-row items-center md:justify-between gap-12">
   {/* Left: Image Placeholder */}
   <div className="w-full md:w-1/2 flex justify-center">
-    <div className="w-80 h-80 bg-gray-200 rounded-[40px]"></div>
+    <div className="bg-gray-200 rounded-[40px] bg-no-repeat bg-cover bg-center w-full h-[500px] md:w-80 md:h-[431px] rounded-se-full rounded-ss-full rounded-b-lg" style={{backgroundImage: "url('/images/pexels-shvetsa-5069432.jpg')"}}></div>
   </div>
 
   {/* Right: Content */}
