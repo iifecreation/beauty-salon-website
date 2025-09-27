@@ -11,7 +11,7 @@ const schema = z.object({
   address: z.string().optional(),
   dateOfBirth: z.string().optional(),
   gender: z.enum(["Male", "Female", "Other"]).optional(),
-  profileImage: z.string().url().optional(),
+  profileImage: z.any().optional(),
   educationLevel: z.string().optional(),
   guardianName: z.string().optional(),
   emergencyContact: z.string().optional(),
@@ -25,9 +25,11 @@ export default function StudentForm({ courseId, onSuccess }: { courseId: string;
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
     reset,
   } = useForm<FormData>({ resolver: zodResolver(schema) });
@@ -37,20 +39,42 @@ export default function StudentForm({ courseId, onSuccess }: { courseId: string;
     setError(null);
     setSuccess(false);
     try {
+      let profileImageUrl = null;
+      if (data.profileImage && data.profileImage.length > 0) {
+        // You may want to upload the file to your server or cloud storage here
+        // For now, just skip file upload logic
+        profileImageUrl = null;
+      }
       const res = await fetch("/api/students", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, enrolledCourses: [courseId] }),
+        body: JSON.stringify({ ...data, profileImage: profileImageUrl, enrolledCourses: [courseId] }),
       });
       const result = await res.json();
       if (!res.ok) throw new Error(result.error || "Submission failed");
       setSuccess(true);
+      setImagePreview(null);
       reset();
       onSuccess?.();
     } catch (err: any) {
       setError(err.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setValue("profileImage", e.target.files);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setImagePreview(null);
+      setValue("profileImage", undefined);
     }
   };
 
@@ -104,11 +128,24 @@ export default function StudentForm({ courseId, onSuccess }: { courseId: string;
           {errors.gender && <p className="text-red-500 text-sm mt-1">{errors.gender.message}</p>}
         </div>
         <div>
-          <label className="block mb-1 font-medium">Profile Image URL</label>
-          <input {...register("profileImage")}
-            placeholder="Profile image URL"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary" />
-          {errors.profileImage && <p className="text-red-500 text-sm mt-1">{errors.profileImage.message}</p>}
+          <label className="block mb-1 font-medium">Profile Image <span className="text-gray-400 text-xs">(optional)</span></label>
+          <div className="w-full flex flex-col items-center justify-center">
+            <label htmlFor="profileImage" className="w-full cursor-pointer border-2 border-dashed border-gray-400 rounded-lg flex flex-col items-center justify-center p-4 hover:border-test-brown-800 transition">
+              {imagePreview ? (
+                <img src={imagePreview} alt="Preview" className="w-32 h-32 object-cover rounded-full mb-2" />
+              ) : (
+                <span className="text-gray-400">Click to upload or drag and drop</span>
+              )}
+              <input
+                id="profileImage"
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleImageChange}
+              />
+            </label>
+            {errors.profileImage?.message && <p className="text-red-500 text-sm mt-1">{String(errors.profileImage.message)}</p>}
+          </div>
         </div>
         <div>
           <label className="block mb-1 font-medium">Education Level</label>

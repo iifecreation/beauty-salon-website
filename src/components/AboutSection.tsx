@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutHomeSection = () => {
   return (
-    <section className="mt-[90px] md:mt-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="mt-[90px] pb-12 sm:pb-20 md:mt-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col md:flex-row gap-12 md:gap-8 lg:gap-16">
         {/* Left Column - Skincare Info */}
         <div className="w-full md:w-1/4 order-1 md:order-1">
@@ -52,7 +52,7 @@ const AboutHomeSection = () => {
             learning options that fit your schedule. Get hands-on experience, build your portfolio, 
             and launch your dream career in beauty.
           </p>
-          <button className="bg-primary text-primary-foreground text-lg sm:text-xl md:text-2xl font-medium tracking-[-0.6px] md:tracking-[-1.2px] mt-8 md:mt-12 px-6 sm:px-10 md:px-12 py-3 md:py-4 rounded-[var(--radius)] hover:opacity-90 transition-opacity w-full md:w-auto">
+          <button className="mt-8 md:mt-12 md:py-4 transition-opacity w-full md:w-auto bg-test-brown-800 hover:bg-test-brown-800/80 px-7 py-6 rounded-full text-white">
             Start Learning
           </button>
         </div>

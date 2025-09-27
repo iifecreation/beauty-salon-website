@@ -26,6 +26,20 @@ export default async function ServicePage({ params }: { params: { id: string } }
   );
   return (
     <div className="max-w-2xl mx-auto py-16 px-4 flex flex-col gap-6">
+      {/* Breadcrumb */}
+      <nav className="mb-4" aria-label="Breadcrumb">
+        <ol className="flex items-center space-x-2 text-sm">
+          <li>
+            <a href="/services" className="text-test-brown-800 hover:underline flex items-center">
+              <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
+              Services
+            </a>
+          </li>
+          <li className="text-muted-foreground">/
+            <span className="ml-2">{service.name}</span>
+          </li>
+        </ol>
+      </nav>
       <h1 className="text-4xl font-bold mb-2 text-center">{service.name}</h1>
       <div className="flex flex-wrap gap-4 justify-center mb-2">
         <span className="bg-accent px-2 py-1 rounded text-sm">{service.category}</span>

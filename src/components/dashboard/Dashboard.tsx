@@ -68,7 +68,7 @@ const AdminDashboard = () => {
     <div className="p-8 max-md:p-4">
       <div className="mb-8">
         <h1 className="text-3xl font-light text-foreground mb-2">Admin Dashboard</h1>
-        <p className="text-muted-foreground">Welcome back! Here's what's happening at Laluna Academy.</p>
+        <p className="text-muted-foreground">Welcome back! Here's what's happening at Beauty Best Academy.</p>
       </div>
 
       {/* Stats Grid */}

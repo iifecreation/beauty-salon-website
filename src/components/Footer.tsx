@@ -1,6 +1,7 @@
 import React from 'react';
 import { HiEnvelope, HiMapPin, HiPhone, HiOutlineClock } from 'react-icons/hi2';
 import { FaFacebookSquare, FaTwitterSquare, FaLinkedin, FaInstagramSquare, FaTwitter, FaFacebookF, FaLinkedinIn, FaInstagram, FaTiktok } from 'react-icons/fa';
+import Image from 'next/image';
 
 const Footer = () => {
   return (
@@ -9,8 +10,8 @@ const Footer = () => {
     {/* Brand / About */}
     <div>
       <div className="flex items-center space-x-2">
-        <div className="w-6 h-6 border border-white rounded-full"></div>
-        <span className="text-2xl font-light">Laluna</span>
+        <Image src="/white-logo.png" width={24} height={24} alt='logo' />
+        <span className="text-2xl font-light">Beauty Best</span>
       </div>
       <p className="mt-4 text-sm text-gray-300 leading-relaxed max-w-xs">
         Professional makeup, pedicure, manicure, and nail fixing services.
@@ -79,7 +80,7 @@ const Footer = () => {
 
   {/* Bottom bar */}
   <div className="mt-12 border-t border-gray-50 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
-    <p>© {new Date().getFullYear()} Laluna. All Rights Reserved</p>
+    <p>© {new Date().getFullYear()} Beauty Best. All Rights Reserved</p>
     <div className="flex space-x-6 mt-4 md:mt-0">
       <a href="#" className="hover:text-white">Terms & Conditions</a>
       <a href="#" className="hover:text-white">Privacy Policy</a>

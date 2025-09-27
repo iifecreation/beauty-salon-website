@@ -89,7 +89,7 @@ const AdminLogin = () => {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="admin@laluna.com"
+                  placeholder="admin@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -133,7 +133,7 @@ const AdminLogin = () => {
         
         <div className="mt-8 text-center">
           <p className="text-xs text-muted-foreground">
-            © 2024 Laluna Beauty Academy. All rights reserved.
+            © 2024 Beauty Best Academy. All rights reserved.
           </p>
         </div>
       </div>

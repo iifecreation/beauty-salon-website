@@ -22,7 +22,7 @@ const HeroSection = () => {
           <p className="text-muted-foreground text-base tracking-[-0.8px] max-w-[500px] leading-relaxed">
             Transform your passion for beauty into a thriving career. Learn makeup artistry, 
             nail care, eyelash extensions, and advanced beauty techniques from certified professionals. 
-            Start your journey with Laluna Academy today.
+            Start your journey with Beauty Best Academy today.
           </p>
         </div>
       </div>

@@ -68,7 +68,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, currentPage }) => {
             <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
               <span className="text-primary-foreground font-semibold text-sm">L</span>
             </div>
-            <span className="text-lg font-medium text-foreground">Laluna Admin</span>
+            <span className="text-lg font-medium text-foreground">Beauty Best Admin</span>
           </div>
           <button
             onClick={() => setSidebarOpen(false)}
@@ -107,7 +107,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children, currentPage }) => {
             </div>
             <div>
               <div className="text-sm font-medium text-foreground">Admin User</div>
-              <div className="text-xs text-muted-foreground">admin@laluna.com</div>
+              <div className="text-xs text-muted-foreground">admin@gmail.com</div>
             </div>
           </div>
           <button 

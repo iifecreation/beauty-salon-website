@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 
 
@@ -17,8 +18,8 @@ function Header() {
     <header className="w-full h-auto flex items-center justify-between px-4 md:px-8 py-4 bg-white shadow-sm relative">
       {/* Logo */}
       <div className="flex items-center space-x-2 z-20">
-        <div className="w-6 h-6 border border-black rounded-full"></div>
-        <span className="text-xl font-semibold">Laluna</span>
+        <Image src="/logo.png" width={24} height={24} alt='logo' />
+        <span className="text-xl font-semibold">Beauty Best</span>
       </div>
 
       {/* Hamburger Icon for Mobile */}

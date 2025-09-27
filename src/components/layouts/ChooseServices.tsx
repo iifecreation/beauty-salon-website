@@ -47,7 +47,7 @@ export default function ChooseServices() {
   return (
     <section className="text-center mb-20">
       <h2 className="text-[32px] md:text-[48px] font-instrument text-warm-brown-700 font-medium mb-12">
-        Why Choose Laluna Services?
+        Why Choose Beauty Best Services?
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-4 md:px-0">
