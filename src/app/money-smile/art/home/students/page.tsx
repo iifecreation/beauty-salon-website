@@ -3,13 +3,12 @@
 
 import React from 'react';
 import AdminLayout from '@/components/AdminLayout';
-import ServicesManagement from '@/components/dashboard/ServicesManagement';
-import StudenteManagements from '@/components/dashboard/StudenteManagements';
+import StudentsManagements from '@/components/dashboard/StudentsManagements';
 
 const AdminServices = () => {
   return (
-    <AdminLayout currentPage="services">
-      <StudenteManagements />
+    <AdminLayout currentPage="students">
+      <StudentsManagements />
     </AdminLayout>
   );
 };

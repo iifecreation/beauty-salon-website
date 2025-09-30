@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import StudentDetailsModal from './StudentDetailsModal';
 import api from '@/lib/api';
 
-function StudenteManagements() {
+function StudentsManagements() {
   const [students, setStudents] = useState<any[]>([]);
   const [search, setSearch] = useState('');
   const [selectedStudent, setSelectedStudent] = useState<any | null>(null);
@@ -91,4 +91,4 @@ function StudenteManagements() {
   );
 }
 
-export default StudenteManagements;
+export default StudentsManagements;

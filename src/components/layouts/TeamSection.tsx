@@ -18,14 +18,14 @@ const teamMembers = [
   },
   {
     id: 3,
-    name: "Amelia Grace",
-    role: "Hair & Spa Specialist",
+    name: "David",
+    role: "Chairman Contact Tender Board",
     img: "/images/IMG-20250908-WA0012.jpg",
   },
   {
     id: 4,
-    name: "Olivia Luxe",
-    role: "Nail & Pedicure Expert",
+    name: "Pat Fax",
+    role: "Assistance / CEO Contract Tender Board",
     img: "/images/IMG-20250907-WA0012.jpg",
   },
 ];

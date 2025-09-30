@@ -7,7 +7,7 @@ import ContactManagement from '@/components/dashboard/ContactManagement';
 
 const AdminServices = () => {
   return (
-    <AdminLayout currentPage="services">
+    <AdminLayout currentPage="contact">
       <ContactManagement />
     </AdminLayout>
   );

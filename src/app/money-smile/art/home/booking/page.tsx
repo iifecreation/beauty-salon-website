@@ -8,7 +8,7 @@ import BookingManagements from '@/components/dashboard/BookingManagements';
 
 const AdminServices = () => {
   return (
-    <AdminLayout currentPage="services">
+    <AdminLayout currentPage="booking">
       <BookingManagements />
     </AdminLayout>
   );
