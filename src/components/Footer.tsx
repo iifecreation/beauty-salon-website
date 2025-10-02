@@ -11,7 +11,7 @@ const Footer = () => {
     <div>
       <div className="flex items-center space-x-2">
         <Image src="/white-logo.png" width={24} height={24} alt='logo' />
-        <span className="text-2xl font-light">Beauty Best</span>
+        <span className="text-2xl font-light">Beauty Kept</span>
       </div>
       <p className="mt-4 text-sm text-gray-300 leading-relaxed max-w-xs">
         Professional makeup, pedicure, manicure, and nail fixing services.
@@ -92,7 +92,7 @@ const Footer = () => {
 
   {/* Bottom bar */}
   <div className="mt-12 border-t border-gray-50 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
-    <p>© {new Date().getFullYear()} Beauty Best. All Rights Reserved</p>
+    <p>© {new Date().getFullYear()} Beauty Kept. All Rights Reserved</p>
     <div className="flex space-x-6 mt-4 md:mt-0">
       <a href="#" className="hover:text-white">Terms & Conditions</a>
       <a href="#" className="hover:text-white">Privacy Policy</a>

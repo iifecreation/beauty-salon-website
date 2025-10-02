@@ -65,7 +65,7 @@ const AdminLogin = () => {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-light tracking-[-2px] text-foreground mb-2">
-            Beauty Best Admin
+            Beauty Kept Admin
           </h1>
           <p className="text-muted-foreground">
             Access your admin dashboard
@@ -133,7 +133,7 @@ const AdminLogin = () => {
         
         <div className="mt-8 text-center">
           <p className="text-xs text-muted-foreground">
-            © 2024 Beauty Best Academy. All rights reserved.
+            © 2024 Beauty Kept Academy. All rights reserved.
           </p>
         </div>
       </div>

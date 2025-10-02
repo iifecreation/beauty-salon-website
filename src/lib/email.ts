@@ -25,14 +25,14 @@ export async function sendConfirmationEmail({
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #eee; border-radius: 8px; overflow: hidden;">
       <div style="background-color: #fff0f5; text-align: center; padding: 30px 20px;">
-        <img src="cid:logo" alt="Beauty Best Logo" width="80" style="margin-bottom: 10px;" />
+        <img src="cid:logo" alt="Beauty Kept Logo" width="80" style="margin-bottom: 10px;" />
         <h2 style="color: #D81B60; margin: 0;">Thank You for Reaching Out!</h2>
       </div>
 
       <div style="padding: 25px 20px; background-color: #ffffff;">
         <p>Hi <strong>${name}</strong>,</p>
 
-        <p>Thank you for contacting <strong>Beauty Best</strong>. We've received your ${inquiryType === 'service' ? 'service request' : 'training inquiry'}, and our team will get back to you shortly.</p>
+        <p>Thank you for contacting <strong>Beauty Kept</strong>. We've received your ${inquiryType === 'service' ? 'service request' : 'training inquiry'}, and our team will get back to you shortly.</p>
 
         ${
           serviceType
@@ -49,19 +49,19 @@ export async function sendConfirmationEmail({
           If you have any urgent questions, feel free to reply to this email. We look forward to helping you look and feel your best!
         </p>
 
-        <p style="margin-top: 30px;">Warm regards,<br /><strong>The Beauty Best Team</strong></p>
+        <p style="margin-top: 30px;">Warm regards,<br /><strong>The Beauty Kept Team</strong></p>
       </div>
 
       <div style="text-align: center; font-size: 12px; color: #999; padding: 20px; background-color: #fafafa;">
-        © ${new Date().getFullYear()} Beauty Best. All rights reserved.
+        © ${new Date().getFullYear()} Beauty Kept. All rights reserved.
       </div>
     </div>
   `;
 
   await transporter.sendMail({
-    from: `"Beauty Best" <${process.env.EMAIL_USER}>`,
+    from: `"Beauty Kept" <${process.env.EMAIL_USER}>`,
     to,
-    subject: 'We Received Your Inquiry – Beauty Best',
+    subject: 'We Received Your Inquiry – Beauty Kept',
     html,
     attachments: [
       {

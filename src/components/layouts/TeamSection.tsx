@@ -65,7 +65,7 @@ export default function TeamSection() {
       <div>
         {/* Title */}
         <h2 className="text-2xl sm:text-3xl md:text-4xl text-center mb-2 font-sentient">
-          The Face of Beauty Best
+          The Face of Beauty Kept
         </h2>
         <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
           Meet our passionate experts who bring creativity, skill, and innovation

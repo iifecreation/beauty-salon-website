@@ -16,7 +16,7 @@ const AboutSection = () => {
     </h2>
 
     <p className="mt-6 text-gray-600 text-base leading-relaxed max-w-lg">
-      At <span className="font-semibold">Beauty Best</span>, we specialize in makeup artistry, pedicure,
+      At <span className="font-semibold">Beauty Kept</span>, we specialize in makeup artistry, pedicure,
       manicure, and nail fixing. Whether you’re preparing for a big day or just
       treating yourself, our professional beauty experts are here to give you
       the flawless look you deserve.

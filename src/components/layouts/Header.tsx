@@ -19,7 +19,7 @@ function Header() {
       {/* Logo */}
       <div className="flex items-center space-x-2 z-20">
         <Image src="/logo.png" width={24} height={24} alt='logo' />
-        <span className="text-xl font-semibold">Beauty Best</span>
+        <span className="text-xl font-semibold">Beauty Kept</span>
       </div>
 
       {/* Hamburger Icon for Mobile */}

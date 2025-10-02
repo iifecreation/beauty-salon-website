@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
         name: data.name,
         inquiryType: 'service',
         serviceType: data.service,
-        message: `You have successfully booked the service: ${data.service} on ${data.bookingDate}.\n\nThank you for choosing Beauty Best!`,
+        message: `You have successfully booked the service: ${data.service} on ${data.bookingDate}.\n\nThank you for choosing Beauty Kept!`,
       });
     } catch (e) {
       // Optionally log email error, but don't block booking

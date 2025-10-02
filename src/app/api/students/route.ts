@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
         name: data.name,
         inquiryType: 'training',
         serviceType: data.enrolledCourses && data.enrolledCourses.length > 0 ? data.enrolledCourses.join(', ') : undefined,
-        message: `You have successfully registered for the course${data.enrolledCourses && data.enrolledCourses.length > 0 ? `: ${data.enrolledCourses.join(', ')}` : ''} in ${data.preferredMode} mode.\n\nThank you for choosing Beauty Best!`,
+        message: `You have successfully registered for the course${data.enrolledCourses && data.enrolledCourses.length > 0 ? `: ${data.enrolledCourses.join(', ')}` : ''} in ${data.preferredMode} mode.\n\nThank you for choosing Beauty Kept!`,
       });
     } catch (e) {
       // Optionally log email error, but don't block registration
