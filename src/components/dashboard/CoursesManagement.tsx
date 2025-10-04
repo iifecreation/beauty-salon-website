@@ -222,6 +222,8 @@ const CoursesManagement = () => {
                 src={course.image}
                 alt={course.title ?? "Course"}
                 className="w-full h-40 object-cover rounded mb-4"
+                width={100}
+        height={100}
               />
             )}
             <div className="flex justify-between mb-4">
@@ -440,6 +442,8 @@ const CoursesManagement = () => {
                     src={preview}
                     alt="Preview"
                     className="mt-3 w-full h-40 object-cover rounded border"
+                    width={100}
+        height={100}
                   />
                 )}
               </div>

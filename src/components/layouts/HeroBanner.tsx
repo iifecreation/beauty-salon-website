@@ -20,6 +20,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
         src={image}
         alt="background"
         className="w-full h-full object-cover"
+        fill
       />
 
       {/* Overlay Content */}

@@ -11,8 +11,7 @@ function HeroSection() {
         src="/images/bg2.webp"
         alt="background"
         className="w-full h-full object-cover"
-        width={100}
-        height={100}
+        fill
       />
 
       {/* Overlay Content */}

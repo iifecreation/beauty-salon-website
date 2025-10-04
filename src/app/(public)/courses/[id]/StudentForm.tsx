@@ -134,7 +134,8 @@ export default function StudentForm({ courseId, onSuccess }: { courseId: string;
           <div className="w-full flex flex-col items-center justify-center">
             <label htmlFor="profileImage" className="w-full cursor-pointer border-2 border-dashed border-gray-400 rounded-lg flex flex-col items-center justify-center p-4 hover:border-test-brown-800 transition">
               {imagePreview ? (
-                <Image src={imagePreview} alt="Preview" className="w-32 h-32 object-cover rounded-full mb-2" />
+                <Image src={imagePreview} alt="Preview" className="w-32 h-32 object-cover rounded-full mb-2" width={100}
+                  height={100} />
               ) : (
                 <span className="text-gray-400">Click to upload or drag and drop</span>
               )}

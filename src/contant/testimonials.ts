@@ -43,7 +43,7 @@ export const testimonials: Testimonial[] = [
     location: "Guadalajara, Mexico",
     review:
       "The masterclass gave me confidence to start freelancing as a makeup artist. The academy is professional and inspiring.",
-    image: "public/images/25/IMG-20250920-WA0003.jpg",
+    image: "/images/25/IMG-20250920-WA0003.jpg",
   },
   {
     id: 5,

@@ -102,6 +102,8 @@ const ProductsManagement = () => {
                         src={product.image}
                         alt={product.name}
                         className="w-10 h-10 rounded-[var(--radius)] object-cover"
+                        width={100}
+        height={100}
                       />
                       <span className="font-medium text-foreground">{product.name}</span>
                     </div>

@@ -67,6 +67,8 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ className }) 
                         src={testimonial.image}
                         alt={testimonial.name}
                         className="w-16 h-16 rounded-full object-cover shadow-md mb-4 self-start"
+                        width={100}
+                        height={100}
                       />
                       <p className=" text-gray-700 text-lg mb-8">
                         &quot;{testimonial.review}&quot;
@@ -88,6 +90,8 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ className }) 
                       src={testimonial.image}
                       alt={testimonial.name}
                       className="w-full h-full object-cover"
+                      width={100}
+                      height={100}
                     />
                   </div>
                 </div>

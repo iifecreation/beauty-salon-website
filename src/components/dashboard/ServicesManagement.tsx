@@ -423,6 +423,8 @@ const ServicesManagement = () => {
                     src={previewImage}
                     alt="Preview"
                     className="mt-3 w-full h-40 object-cover rounded border"
+                    width={100}
+        height={100}
                   />
                 )}
               </div>
