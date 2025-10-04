@@ -16,15 +16,19 @@ const AwardsBanner = () => {
       </p>
 
       <div className="space-y-10">
-        {awardsData.map(({ year, className, direction, awards }) => (
-          <Award
-            key={year}
-            year={year}
-            className={className}
-            direction={direction}
-            awards={awards}
-          />
-        ))}
+        {awardsData.map(({ year, className, direction, awards }) => {
+          // direction in data is a string, but Award expects 'left' | 'right'
+          const dir = direction === 'right' ? 'right' : 'left';
+          return (
+            <Award
+              key={year}
+              year={year}
+              className={className}
+              direction={dir}
+              awards={awards}
+            />
+          );
+        })}
       </div>
 
     </section>

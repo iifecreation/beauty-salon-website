@@ -1,6 +1,6 @@
 import React from 'react';
 import { HiEnvelope, HiMapPin, HiPhone, HiOutlineClock } from 'react-icons/hi2';
-import { FaFacebookSquare, FaTwitterSquare, FaLinkedin, FaInstagramSquare, FaTwitter, FaFacebookF, FaLinkedinIn, FaInstagram, FaTiktok } from 'react-icons/fa';
+import { FaTwitter, FaFacebookF, FaLinkedinIn, FaInstagram, FaTiktok } from 'react-icons/fa';
 import Image from 'next/image';
 
 const Footer = () => {

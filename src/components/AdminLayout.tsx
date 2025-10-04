@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { 
-  LayoutDashboard, 
-  Package, 
+  LayoutDashboard,
   BookOpen, 
-  Settings, 
-  CreditCard, 
+  Settings,
   Menu, 
   X,
   LogOut,

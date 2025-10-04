@@ -4,10 +4,20 @@ import Image from 'next/image';
 
 const ProductsManagement = () => {
   const [showForm, setShowForm] = useState(false);
-  const [editingProduct, setEditingProduct] = useState(null);
+  type Product = {
+    id: number | string;
+    name: string;
+    category: string;
+    price: string;
+    stock: number;
+    status: string;
+    image: string;
+  };
+
+  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
 
-  const [products, setProducts] = useState([
+  const [products, setProducts] = useState<Product[]>([
     {
       id: 1,
       name: 'Professional Makeup Kit',
@@ -37,12 +47,12 @@ const ProductsManagement = () => {
     }
   ]);
 
-  const handleEdit = (product) => {
+  const handleEdit = (product: Product) => {
     setEditingProduct(product);
     setShowForm(true);
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = (id: number | string) => {
     setProducts(products.filter(p => p.id !== id));
   };
 
@@ -103,7 +113,7 @@ const ProductsManagement = () => {
                         alt={product.name}
                         className="w-10 h-10 rounded-[var(--radius)] object-cover"
                         width={100}
-        height={100}
+                        height={100}
                       />
                       <span className="font-medium text-foreground">{product.name}</span>
                     </div>
