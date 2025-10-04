@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import sanitize from "mongo-sanitize";
 import validator from "validator";
@@ -17,13 +17,19 @@ export async function verifyPassword(password: string, hash: string) {
   return bcrypt.compare(password, hash);
 }
 
-export function signToken(payload: object) {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
+export type TokenPayload = JwtPayload & { id?: string; role?: string };
+
+export function signToken(payload: unknown) {
+  // jwt.sign typing can be strict about the payload/secret types; cast to any to keep runtime behavior.
+  return jwt.sign(payload as any, JWT_SECRET as any, { expiresIn: JWT_EXPIRES_IN as any });
 }
 
-export function verifyToken(token: string) {
+export function verifyToken(token: string): TokenPayload | null {
   try {
-    return jwt.verify(token, JWT_SECRET);
+    const decoded = jwt.verify(token, JWT_SECRET);
+    // jwt.verify can return a string or an object (JwtPayload). We only support object payloads here.
+    if (typeof decoded === "string") return null;
+    return decoded as TokenPayload;
   } catch (err) {
     return null;
   }

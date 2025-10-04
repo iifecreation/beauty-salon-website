@@ -16,7 +16,7 @@ export async function POST() {
   }
 
   const payload = verifyToken(token);
-  if (!payload) {
+  if (!payload || !payload.id) {
     return NextResponse.json({ error: "Invalid token" }, { status: 401 });
   }
 
