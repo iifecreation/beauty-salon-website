@@ -1,9 +1,10 @@
-import { notFound } from 'next/navigation';
+
 import Image from 'next/image';
 import StudentForm from './StudentForm';
 
 
 import { cookies } from 'next/headers';
+import Link from 'next/link';
 
 async function getCourse(id: string) {
   // Build absolute URL for SSR
@@ -26,7 +27,7 @@ export default async function CoursePage({ params }: { params: { id: string } })
       </svg>
       <h2 className="text-2xl font-semibold mb-2 text-center">Course Not Found</h2>
       <p className="text-muted-foreground text-center mb-6">Sorry, the course you are looking for does not exist or may have been removed.</p>
-      <a href="/courses" className="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:opacity-90 transition">Back to Courses</a>
+      <Link href="/courses" className="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:opacity-90 transition">Back to Courses</Link>
     </div>
   );
   return (
@@ -35,10 +36,10 @@ export default async function CoursePage({ params }: { params: { id: string } })
       <nav className="mb-4" aria-label="Breadcrumb">
         <ol className="flex items-center space-x-2 text-sm">
           <li>
-            <a href="/courses" className="text-test-brown-800 hover:underline flex items-center">
+            <Link href="/courses" className="text-test-brown-800 hover:underline flex items-center">
               <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
               Courses
-            </a>
+            </Link>
           </li>
           <li className="text-muted-foreground">/
             <span className="ml-2">{course.title}</span>

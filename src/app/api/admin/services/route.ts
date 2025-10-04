@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb";
 import Service from "@/models/Service";
 import { withAdmin } from "@/lib/handlers";

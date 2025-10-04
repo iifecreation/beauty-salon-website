@@ -4,6 +4,7 @@ import Course from "@/models/Course";
 import { withAdmin } from "@/lib/handlers";
 import { courseSchema } from "@/lib/schemas";
 import cloudinary from "@/lib/cloudinary";
+import path from "path";
 
 export const runtime = "nodejs";
 
@@ -12,7 +13,7 @@ async function uploadToCloudinary(file: File): Promise<{ url: string; public_id:
   const arrayBuffer = await file.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
 
-  const result = await cloudinary.uploader.upload_stream({ folder: "courses" }, (err, res) => {
+  await cloudinary.uploader.upload_stream({ folder: "courses" }, (err, res) => {
     if (err) throw err;
     return res;
   });
@@ -21,7 +22,6 @@ async function uploadToCloudinary(file: File): Promise<{ url: string; public_id:
   // Simplest: write buffer to temp file
   const fs = await import("fs/promises");
   const tmp = await import("os").then(os => os.tmpdir());
-  const path = require("path");
   const tempFilePath = path.join(tmp, file.name);
   await fs.writeFile(tempFilePath, buffer);
 

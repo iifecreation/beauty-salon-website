@@ -63,13 +63,13 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ className }) 
                   {/* Front */}
                   <div className="absolute inset-0 bg-white shadow-xl rounded-lg overflow-hidden backface-hidden transition-transform duration-700 group-hover:rotate-y-180">
                     <div className="flex flex-col items-center p-6 h-full relative">
-                      <img
+                      <Image
                         src={testimonial.image}
                         alt={testimonial.name}
                         className="w-16 h-16 rounded-full object-cover shadow-md mb-4 self-start"
                       />
                       <p className=" text-gray-700 text-lg mb-8">
-                        "{testimonial.review}"
+                        &quot;{testimonial.review}&quot;
                       </p>
                       <div className="absolute bottom-4 left-4 right-4">
                         <p className="text-xl font-semibold text-warm-brown-800">
@@ -84,7 +84,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ className }) 
 
                   {/* Back - Full Image */}
                   <div className="absolute inset-0 rounded-lg overflow-hidden backface-hidden transform rotate-y-180 group-hover:rotate-y-0 transition-transform duration-700">
-                    <img
+                    <Image
                       src={testimonial.image}
                       alt={testimonial.name}
                       className="w-full h-full object-cover"

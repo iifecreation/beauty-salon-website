@@ -3,6 +3,7 @@
 import React from 'react'
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 
 
 
@@ -39,40 +40,40 @@ function Header() {
         ${menuOpen ? 'flex translate-x-0 h-full' : 'hidden md:flex translate-x-full md:translate-x-0 md:h-auto'}`}
         style={menuOpen ? { minHeight: '100vh', paddingTop: '5rem' } : {}}
       >
-        <a
+        <Link
           href="/"
           className={`relative px-3 py-1 text-sm mb-4 md:mb-0 md:mr-0 ${pathname === '/' ? 'rounded-full border border-black font-medium' : 'hover:text-black'}`}
         >
           Home
-        </a>
-        <a
+        </Link>
+        <Link
           href="/courses"
           className={`text-sm px-3 mb-4 md:mb-0 ${pathname === '/courses' ? 'rounded-full border border-black font-medium' : 'hover:text-black'}`}
         >
           Courses
-        </a>
-        <a
+        </Link>
+        <Link
           href="/services"
           className={`text-sm px-3 mb-4 md:mb-0 ${pathname === '/services' ? 'rounded-full border border-black font-medium' : 'hover:text-black'}`}
         >
           Services
-        </a>
-        <a
+        </Link>
+        <Link
           href="/about"
           className={`text-sm px-3 mb-4 md:mb-0 ${pathname === '/about' ? 'rounded-full border border-black font-medium' : 'hover:text-black'}`}
         >
           About
-        </a>
+        </Link>
         {/* Call to Action Button for Mobile */}
-        <a href='/contact' className="md:hidden mt-6 px-5 py-2 bg-black text-white text-sm rounded-full shadow hover:bg-gray-900">
+        <Link href='/contact' className="md:hidden mt-6 px-5 py-2 bg-black text-white text-sm rounded-full shadow hover:bg-gray-900">
           Contact us
-        </a>
+        </Link>
       </nav>
 
       {/* Call to Action Button for Desktop */}
-      <a href='/contact' className="hidden md:block px-5 py-2 bg-test-brown-800   text-white text-sm rounded-full shadow hover:bg-gray-900">
+      <Link href='/contact' className="hidden md:block px-5 py-2 bg-test-brown-800   text-white text-sm rounded-full shadow hover:bg-gray-900">
         Contact us
-      </a>
+      </Link>
 
       {/* Overlay for mobile menu */}
       {menuOpen && (

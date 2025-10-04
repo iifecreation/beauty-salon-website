@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Download, Filter, Eye, DollarSign, TrendingUp, Calendar } from 'lucide-react';
+import { Search, Download, Eye, DollarSign, TrendingUp, Calendar } from 'lucide-react';
 
 const PaymentsView = () => {
   const [searchTerm, setSearchTerm] = useState('');

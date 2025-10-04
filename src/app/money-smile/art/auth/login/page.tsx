@@ -47,7 +47,7 @@ const AdminLogin = () => {
     } catch (error: any) {
       const errorData = error?.response?.data?.error;
 
-      let message =
+      const message =
         errorData?.password?._errors?.[0] ||
         errorData?.email?._errors?.[0] ||
         (typeof errorData === "string" ? errorData : null) ||

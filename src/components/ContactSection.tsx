@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
 // Zod schema for validation (matches backend)
 const ContactSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -73,10 +74,18 @@ const ContactSection = () => {
         toast.success("Your message has been sent! We'll get back to you soon.");
         reset();
       }
-    } catch (err: any) {
-      let message = err?.response?.data?.error || err?.response?.data?.message
-      setApiError(message || "Network error. Please try again later.");
-      toast.error(message || "Network error. Please try again later.");
+    } catch (err) {
+     if (axios.isAxiosError(err)) {
+        const message = err.response?.data?.error || err.response?.data?.message || "Network error. Please try again later.";
+        setApiError(message);
+        toast.error(message);
+      } else if (err instanceof Error) {
+        setApiError(err.message);
+        toast.error(err?.message);
+      } else {
+        setApiError("An unknown error occurred");
+        toast.error("An unknown error occurred");
+      }
     }
   };
 

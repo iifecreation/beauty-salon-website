@@ -1,8 +1,5 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ArrowLeft } from "lucide-react";
 import Award from "./Award";
 import { awardsData } from "@/contant/award";
 
@@ -15,7 +12,7 @@ const AwardsBanner = () => {
         Awards & Recognition
       </h2>
       <p className="max-w-2xl mx-auto text-center text-base  text-muted-foreground mb-10">
-        We are proud to celebrate our students' achievements. These awards recognize the hard work, talent, and dedication of those who have excelled in our training programs.
+        We are proud to celebrate our students&lsquo; achievements. These awards recognize the hard work, talent, and dedication of those who have excelled in our training programs.
       </p>
 
       <div className="space-y-10">

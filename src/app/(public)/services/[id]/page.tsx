@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import BookingForm from './BookingForm';
+import Link from 'next/link';
 
 async function getService(id: string) {
   const base = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000';
@@ -21,7 +22,7 @@ export default async function ServicePage({ params }: { params: { id: string } }
       </svg>
       <h2 className="text-2xl font-semibold mb-2 text-center">Service Not Found</h2>
       <p className="text-muted-foreground text-center mb-6">Sorry, the service you are looking for does not exist or may have been removed.</p>
-      <a href="/services" className="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:opacity-90 transition">Back to Services</a>
+      <Link href="/services" className="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:opacity-90 transition">Back to Services</Link>
     </div>
   );
   return (
@@ -30,10 +31,10 @@ export default async function ServicePage({ params }: { params: { id: string } }
       <nav className="mb-4" aria-label="Breadcrumb">
         <ol className="flex items-center space-x-2 text-sm">
           <li>
-            <a href="/services" className="text-test-brown-800 hover:underline flex items-center">
+            <Link href="/services" className="text-test-brown-800 hover:underline flex items-center">
               <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
               Services
-            </a>
+            </Link>
           </li>
           <li className="text-muted-foreground">/
             <span className="ml-2">{service.name}</span>

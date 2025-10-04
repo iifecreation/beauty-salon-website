@@ -20,6 +20,7 @@ import {
   AlertDialogCancel,
   AlertDialogAction,
 } from "@/components/ui/alert-dialog";
+import Image from "next/image";
 
 // ✅ Zod Schema
 const serviceSchema = z.object({
@@ -171,7 +172,7 @@ const ServicesManagement = () => {
         });
         toast.success("Service updated successfully");
       } else {
-        let res = await api.post("/admin/services", formData , {
+        const res = await api.post("/admin/services", formData , {
           headers: { "Content-Type": "multipart/form-data" },
         });
         console.log(res);
@@ -418,7 +419,7 @@ const ServicesManagement = () => {
                   className="w-full p-2 border rounded bg-background"
                 />
                 {previewImage && (
-                  <img
+                  <Image
                     src={previewImage}
                     alt="Preview"
                     className="mt-3 w-full h-40 object-cover rounded border"

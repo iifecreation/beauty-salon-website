@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 interface StudentDetailsModalProps {
@@ -19,7 +20,7 @@ const StudentDetailsModal: React.FC<StudentDetailsModalProps> = ({ student, onCl
           {student.address && <div><strong>Address:</strong> {student.address}</div>}
           {student.dateOfBirth && <div><strong>Date of Birth:</strong> {new Date(student.dateOfBirth).toLocaleDateString()}</div>}
           {student.gender && <div><strong>Gender:</strong> {student.gender}</div>}
-          {student.profileImage && <div><strong>Profile Image:</strong> <img src={student.profileImage} alt="Profile" className="w-20 h-20 rounded-full object-cover mt-1" /></div>}
+          {student.profileImage && <div><strong>Profile Image:</strong> <Image src={student.profileImage} alt="Profile" className="w-20 h-20 rounded-full object-cover mt-1" /></div>}
           {student.educationLevel && <div><strong>Education Level:</strong> {student.educationLevel}</div>}
           {student.guardianName && <div><strong>Guardian Name:</strong> {student.guardianName}</div>}
           {student.emergencyContact && <div><strong>Emergency Contact:</strong> {student.emergencyContact}</div>}

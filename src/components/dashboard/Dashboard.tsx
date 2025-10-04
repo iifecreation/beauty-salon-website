@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Users, BookOpen, Package, Settings, DollarSign, TrendingUp, Loader } from 'lucide-react';
+import { Users, BookOpen, Package, Settings, Loader } from 'lucide-react';
 import api from '@/lib/api';
 
 const AdminDashboard = () => {
@@ -68,7 +68,7 @@ const AdminDashboard = () => {
     <div className="p-8 max-md:p-4">
       <div className="mb-8">
         <h1 className="text-3xl font-light text-foreground mb-2">Admin Dashboard</h1>
-        <p className="text-muted-foreground">Welcome back! Here's what's happening at Beauty Kept Academy.</p>
+        <p className="text-muted-foreground">Welcome back! Here&apos;s what&apos;s happening at Beauty Kept Academy.</p>
       </div>
 
       {/* Stats Grid */}

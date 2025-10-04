@@ -12,7 +12,6 @@ const bodySchema = z.object({
 });
 
 export async function POST(req: Request) {
-  const ip = req.headers.get("x-forwarded-for") || "unknown";
   // simple rate limiting could be checked here
   await dbConnect();
   const body = await req.json();

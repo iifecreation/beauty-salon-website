@@ -1,5 +1,5 @@
 
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb";
 import Contact from "@/models/Contact";
 import { withAdmin } from "@/lib/handlers";

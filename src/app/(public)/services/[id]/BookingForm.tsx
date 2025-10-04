@@ -42,8 +42,9 @@ export default function BookingForm({ serviceId, onSuccess }: { serviceId: strin
       setSuccess(true);
       reset();
       onSuccess?.();
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      const error = err as Error;
+      setError(error?.message || "An error occurred");
     } finally {
       setLoading(false);
     }

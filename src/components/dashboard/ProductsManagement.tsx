@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Plus, Edit, Trash2, Search } from 'lucide-react';
+import Image from 'next/image';
 
 const ProductsManagement = () => {
   const [showForm, setShowForm] = useState(false);
@@ -97,7 +98,7 @@ const ProductsManagement = () => {
                 <tr key={product.id} className="border-b border-border hover:bg-accent/5">
                   <td className="p-4">
                     <div className="flex items-center gap-3">
-                      <img
+                      <Image
                         src={product.image}
                         alt={product.name}
                         className="w-10 h-10 rounded-[var(--radius)] object-cover"

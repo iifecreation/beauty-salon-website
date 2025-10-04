@@ -20,6 +20,7 @@ import {
   AlertDialogCancel,
   AlertDialogAction,
 } from "@/components/ui/alert-dialog";
+import Image from "next/image";
 
 
 // ✅ Zod Schema
@@ -151,7 +152,7 @@ const CoursesManagement = () => {
       if (file) formData.append("image", file);
 
       if (editingCourse?._id) {
-        const res = await api.put(`/admin/courses?id=${editingCourse._id}`, formData, {
+        await api.put(`/admin/courses?id=${editingCourse._id}`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         });
         toast.success("Course updated successfully");
@@ -217,7 +218,7 @@ const CoursesManagement = () => {
         {courses.map((course) => (
           <div key={course._id} className="bg-card border rounded p-6">
             {course.image && (
-              <img
+              <Image
                 src={course.image}
                 alt={course.title ?? "Course"}
                 className="w-full h-40 object-cover rounded mb-4"
@@ -435,7 +436,7 @@ const CoursesManagement = () => {
                   className="w-full p-2 border rounded bg-background"
                 />
                 {preview && (
-                  <img
+                  <Image
                     src={preview}
                     alt="Preview"
                     className="mt-3 w-full h-40 object-cover rounded border"

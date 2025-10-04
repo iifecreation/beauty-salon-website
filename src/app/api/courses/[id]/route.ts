@@ -6,10 +6,10 @@ export const runtime = "nodejs";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   await dbConnect();
-  const { id } = params;
+  const { id } = await context.params;
   if (!id) {
     return NextResponse.json({ error: "Missing course id" }, { status: 400 });
   }

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 
 function HeroSection() {
@@ -6,10 +7,12 @@ function HeroSection() {
 
       <div className="relative w-full h-[85vh] overflow-hidden mb-12 rounded-4xl">
       {/* Background Image */}
-      <img
+      <Image
         src="/images/bg2.webp"
         alt="background"
         className="w-full h-full object-cover"
+        width={100}
+        height={100}
       />
 
       {/* Overlay Content */}

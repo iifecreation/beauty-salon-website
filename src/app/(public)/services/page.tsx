@@ -2,10 +2,8 @@
 
 import ChooseServices from '@/components/layouts/ChooseServices';
 import HeroBanner from '@/components/layouts/HeroBanner';
-import OurValues from '@/components/layouts/OurValues';
 import TestimonialsSection from '@/components/TestimonialsSection';
 // import { services } from '@/contant/services';
-import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link';

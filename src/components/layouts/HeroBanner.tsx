@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import React from "react";
 
 interface HeroBannerProps {
@@ -15,7 +16,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
   return (
     <div className="relative w-full h-[80vh] overflow-hidden mb-12 rounded-4xl">
       {/* Background Image */}
-      <img
+      <Image
         src={image}
         alt="background"
         className="w-full h-full object-cover"

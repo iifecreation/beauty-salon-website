@@ -15,7 +15,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
   DialogClose,
 } from "@/components/ui/dialog";
 import api from "@/lib/api";

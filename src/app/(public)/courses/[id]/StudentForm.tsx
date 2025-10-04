@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useState } from "react";
+import Image from "next/image";
 
 const schema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -56,8 +57,9 @@ export default function StudentForm({ courseId, onSuccess }: { courseId: string;
       setImagePreview(null);
       reset();
       onSuccess?.();
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err) {
+      const error = err as Error;
+      setError(error?.message || "An error occurred");
     } finally {
       setLoading(false);
     }
@@ -132,7 +134,7 @@ export default function StudentForm({ courseId, onSuccess }: { courseId: string;
           <div className="w-full flex flex-col items-center justify-center">
             <label htmlFor="profileImage" className="w-full cursor-pointer border-2 border-dashed border-gray-400 rounded-lg flex flex-col items-center justify-center p-4 hover:border-test-brown-800 transition">
               {imagePreview ? (
-                <img src={imagePreview} alt="Preview" className="w-32 h-32 object-cover rounded-full mb-2" />
+                <Image src={imagePreview} alt="Preview" className="w-32 h-32 object-cover rounded-full mb-2" />
               ) : (
                 <span className="text-gray-400">Click to upload or drag and drop</span>
               )}

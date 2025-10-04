@@ -3,7 +3,6 @@
 import Gallery from '@/components/Gallery';
 import Award from '@/components/layouts/Award';
 import ChooseAcademy from '@/components/layouts/ChooseAcademy';
-import HeroBannerTwo from '@/components/layouts/HeroBannerTwo';
 import { awardsData } from '@/contant/award';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -102,7 +101,7 @@ const Courses = () => {
             Awards & Recognition
           </h2>
           <p className="max-w-2xl mx-auto text-center text-lg text-muted-foreground mb-10">
-            We are proud to celebrate our students' achievements. These awards recognize the hard work, talent, and dedication of those who have excelled in our training programs.
+            We are proud to celebrate our students&apos; achievements. These awards recognize the hard work, talent, and dedication of those who have excelled in our training programs.
           </p>
 
           <div className="space-y-10">
