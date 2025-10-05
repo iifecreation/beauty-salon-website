@@ -95,7 +95,7 @@ const Award: React.FC<AwardsBannerProps> = ({ awards, direction = "left", classN
 
               {/* Text Overlay at Bottom */}
               <div className="absolute bottom-0 w-full px-4 py-6 text-white text-left z-10">
-                <h2 className="text-xl font-semibold">{award.user}</h2>
+                <h2 className="text-xl font-semibold">{award.title}</h2>
                 <p className="text-sm text-gray-300 mt-1">
                   {award.age} years old<br />
                   {award.country}
