@@ -1,24 +1,15 @@
 // app/layout.tsx or app/layout.js
 import type { Metadata } from "next";
-import {
-  Nunito,
-  Instrument_Serif,
-} from "next/font/google";
+import { Nunito } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import PageAnimator from "@/components/PageAnimator";
 
 // ✅ Nunito as default font
 const nunito = Nunito({
   subsets: ["latin"],
   variable: "--font-nunito",
   display: "swap",
-});
-
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  variable: "--font-instrument-serif",
-  display: "swap",
-  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -63,10 +54,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${nunito.variable} ${instrumentSerif.variable}`}>
+    <html lang="en" className={`${nunito.variable}`}>
       <body className="font-nunito antialiased">
         <Toaster position="top-right" />
-        {children}
+        <PageAnimator>
+          {children}
+        </PageAnimator>
       </body>
     </html>
   );

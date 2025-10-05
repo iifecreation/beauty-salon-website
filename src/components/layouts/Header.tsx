@@ -19,8 +19,8 @@ function Header() {
     <header className="w-full h-auto flex items-center justify-between px-4 md:px-8 py-4 bg-white shadow-sm relative">
       {/* Logo */}
       <div className="flex items-center space-x-2 z-20">
-        <Image src="/logo.png" width={24} height={24} alt='logo' />
-        <span className="text-xl font-semibold">Beauty Kept</span>
+        <Image src="/logo.png" width={24} height={24} alt='logo' className='object-cover w-6 h-auto md:w-10' />
+        <span className="text-xl md:text-2xl font-nunito font-semibold">Beauty Kept</span>
       </div>
 
       {/* Hamburger Icon for Mobile */}

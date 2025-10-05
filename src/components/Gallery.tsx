@@ -39,7 +39,7 @@ export default function StudentGallery({ images }: GalleryProps) {
     <section className="w-full py-12 md:py-20 bg-white">
       <div className="mx-auto">
         <h2 className="text-[32px] md:text-[48px] font-light mb-8 text-center font-sentient">
-          Meet Our <span className="italic font-bold text-test-brown-800">Students</span>
+          Meet Our Students
         </h2>
 
         <div className="relative overflow-hidden">

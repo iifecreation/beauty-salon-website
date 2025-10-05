@@ -41,7 +41,7 @@ const Courses = () => {
       <div className="pt-[45px]">
         {/* Hero Section */}
         <section className="text-center mb-16 mx-auto lg:px-16 py-7 px-4 sm:px-10">
-          <h1 className="text-[64px] font-light leading-tight tracking-[-3.2px] text-foreground mb-6 max-md:text-[40px]">
+          <h1 className="text-[64px] font-sentient font-light leading-tight tracking-[-3.2px] text-foreground mb-6 max-md:text-[40px]">
             Professional Beauty
             <br />
             Courses & Certification

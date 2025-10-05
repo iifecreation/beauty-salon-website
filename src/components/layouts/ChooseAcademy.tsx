@@ -47,8 +47,8 @@ export default function ChooseAcademy() {
 
   return (
     <section className="text-center py-12 md:py-20">
-      <h2 className="text-[32px] md:text-[48px] font-light mb-8 text-center font-instrument">
-        Why Choose <span className="italic font-bold text-test-brown-800">Beauty Kept Academy?</span>
+      <h2 className="text-[32px] md:text-[48px] mb-8 text-center font-sentient font-light leading-tight tracking-[-3.2px] text-foreground ">
+        Why Choose Beauty Kept Academy?
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-4 md:px-0">

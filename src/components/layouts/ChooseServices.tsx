@@ -46,7 +46,7 @@ export default function ChooseServices() {
 
   return (
     <section className="text-center mb-20">
-      <h2 className="text-[32px] md:text-[48px] font-instrument text-warm-brown-700 font-medium mb-12">
+      <h2 className="text-[32px] md:text-[48px] font-sentient  font-light mb-12">
         Why Choose Beauty Kept Services?
       </h2>
 

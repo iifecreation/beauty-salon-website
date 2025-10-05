@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Quote from "@/components/ui/Quote";
 import { testimonials } from "@/contant/testimonials";
 import { cn } from "@/lib/utils";
 
@@ -38,7 +39,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ className }) 
   return (
     <section className={cn("py-20 bg-test-brown-50/50 max-w-[1440px] mx-auto", className)}>
       <div className="mb-12">
-        <h2 className="text-[32px] md:text-[48px] font-instrument text-warm-brown-700 font-medium text-center">
+        <h2 className="text-[32px] md:text-[48px] font-sentient font-light text-center">
           Testimonials
         </h2>
         <p className="text-center">Success Stories from Our Students and Clients</p>
@@ -57,42 +58,23 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ className }) 
             {allTestimonials.map((testimonial, index) => (
               <div
                 key={`${testimonial.id}-${index}`} // include index to make duplicated keys unique
-                className="group perspective-1000 flex-shrink-0 w-[80vw] sm:w-[50vw] md:w-[33.33vw] lg:w-[25vw] h-[420px]"
+                className="flex-shrink-0 w-[80vw] sm:w-[50vw] md:w-[33.33vw] lg:w-[25vw] h-[420px]"
               >
-                <div className="relative w-full h-full group cursor-pointer">
-                  {/* Front */}
-                  <div className="absolute inset-0 bg-white shadow-xl rounded-lg overflow-hidden backface-hidden transition-transform duration-700 group-hover:rotate-y-180">
-                    <div className="flex flex-col items-center p-6 h-full relative">
-                      <Image
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className="w-16 h-16 rounded-full object-cover shadow-md mb-4 self-start"
-                        width={100}
-                        height={100}
-                      />
-                      <p className=" text-gray-700 text-lg mb-8">
-                        &quot;{testimonial.review}&quot;
-                      </p>
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <p className="text-xl font-semibold text-warm-brown-800">
-                          {testimonial.name}
-                        </p>
-                        <p className="text-sm text-gray-500 mt-1">
-                          {testimonial.service} • {testimonial.location}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                <div className="relative w-full h-full cursor-pointer rounded-lg overflow-hidden shadow-xl">
+                  {/* Full background image */}
+                  <Image
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    fill
+                    className="object-cover"
+                  />
 
-                  {/* Back - Full Image */}
-                  <div className="absolute inset-0 rounded-lg overflow-hidden backface-hidden transform rotate-y-180 group-hover:rotate-y-0 transition-transform duration-700">
-                    <Image
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="w-full h-full object-cover"
-                      width={100}
-                      height={100}
-                    />
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+
+                  {/* Content on bottom over dark gradient */}
+                  <div className="absolute bottom-0 w-full px-4 py-6 text-white text-center z-10">
+                    <Quote className="text-white/95 mb-2">{testimonial.review}</Quote>
                   </div>
                 </div>
               </div>

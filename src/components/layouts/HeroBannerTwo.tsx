@@ -33,7 +33,7 @@ const HeroBannerTwo: React.FC<HeroBannerTwoProps> = ({ image ="https://images.sq
 
       {/* Overlay text */}
       <div className="absolute top-0 left-0 text-white">
-        <h2 className="text-warm-brown-700 font-instrument font-medium text-xl lg:text-[80px] md:text-4xl sm:text-3xl">
+        <h2 className="text-warm-brown-700 font-medium text-xl lg:text-[80px] md:text-4xl sm:text-3xl">
           {title}
         </h2>
       </div>
