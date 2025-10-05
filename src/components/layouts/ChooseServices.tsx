@@ -45,7 +45,7 @@ export default function ChooseServices() {
   ];
 
   return (
-    <section className="text-center mb-20">
+    <section className="text-center mb-20 mx-auto max-w-[1440px] lg:px-16 py-7 px-4 sm:px-10">
       <h2 className="text-[32px] md:text-[48px] font-sentient  font-light mb-12">
         Why Choose Beauty Kept Services?
       </h2>

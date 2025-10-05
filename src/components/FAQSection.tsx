@@ -43,7 +43,7 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="bg-secondary rounded-[var(--radius)] md:p-12 py-12 px-4">
+    <section className="bg-warm-brown-50 rounded-[var(--radius)] md:p-12 py-12 px-4">
       <div className="max-w-3xl mx-auto">
         <h2 className="md:text-[48px] text-3xl font-light leading-tight tracking-[-2.4px] text-foreground mb-8 text-center">
           Frequently Asked Questions

@@ -85,7 +85,7 @@ const Courses = () => {
                     <Link 
                       href={`/courses/${course._id}`}
                       scroll={false}
-                      className="bg-test-brown-800 text-primary-foreground px-6 py-3 h-auto hover:opacity-90 transition-opacity hover:bg-test-brown-800/80 rounded-full">
+                      className="bg-warm-brown-800 text-primary-foreground px-6 py-3 h-auto hover:opacity-90 transition-opacity hover:bg-warm-brown-800/80 rounded-full">
                       Enroll Now
                     </Link>
                   </div>
@@ -119,7 +119,7 @@ const Courses = () => {
           <ChooseAcademy />
         </div>
 
-        <Gallery images={images} />
+        <Gallery images={images} title='Meet Our Students' />
 
       </div>
     </div>

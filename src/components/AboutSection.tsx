@@ -52,7 +52,7 @@ const AboutHomeSection = () => {
             learning options that fit your schedule. Get hands-on experience, build your portfolio, 
             and launch your dream career in beauty.
           </p>
-          <button className="mt-8 md:mt-12 md:py-4 transition-opacity w-full md:w-auto bg-test-brown-800 hover:bg-test-brown-800/80 px-7 py-6 rounded-full text-white">
+          <button className="mt-8 md:mt-12 md:py-4 transition-opacity w-full md:w-auto bg-warm-brown-800 hover:bg-warm-brown-800/80 px-7 py-6 rounded-full text-white">
             Start Learning
           </button>
         </div>

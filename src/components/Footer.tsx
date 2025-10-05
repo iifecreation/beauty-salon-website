@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-test-brown-800 text-white px-8 py-12">
+    <footer className="w-full bg-warm-brown-800 text-white px-8 py-12">
   <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
     {/* Brand / About */}
     <div>

@@ -196,7 +196,7 @@ const ContactSection = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-10 py-4 rounded-2xl bg-test-brown-800 text-white text-lg font-medium hover:bg-test-brown-800/80 transition-colors disabled:opacity-60"
+              className="px-10 py-4 rounded-2xl bg-warm-brown-800 text-white text-lg font-medium hover:bg-warm-brown-800/95 transition-colors disabled:opacity-60"
             >
               {isSubmitting ? "Sending..." : "Submit"}
             </button>

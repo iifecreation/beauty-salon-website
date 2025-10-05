@@ -65,13 +65,13 @@ function Header() {
           About
         </Link>
         {/* Call to Action Button for Mobile */}
-        <Link href='/contact' className="md:hidden mt-6 px-5 py-2 bg-black text-white text-sm rounded-full shadow hover:bg-gray-900">
+        <Link href='/contact' className="md:hidden mt-6 px-5 py-2 bg-warm-brown-800 text-white text-sm rounded-full shadow hover:bg-warm-brown-800/95">
           Contact us
         </Link>
       </nav>
 
       {/* Call to Action Button for Desktop */}
-      <Link href='/contact' className="hidden md:block px-5 py-2 bg-test-brown-800   text-white text-sm rounded-full shadow hover:bg-gray-900">
+      <Link href='/contact' className="hidden md:block px-5 py-2 bg-warm-brown-800 hover:bg-warm-brown-800/95 text-white text-sm rounded-full shadow ">
         Contact us
       </Link>
 

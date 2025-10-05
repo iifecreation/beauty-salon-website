@@ -75,7 +75,7 @@ function BookingManagements() {
                   <td className="py-2 px-4 border-b">{booking.status}</td>
                   <td className="py-2 px-4 border-b">
                     <button
-                      className="bg-test-brown-800 hover:bg-test-brown-800/80 rounded-full text-white px-4 py-1 text-sm"
+                      className="bg-warm-brown-800 hover:bg-warm-brown-800/80 rounded-full text-white px-4 py-1 text-sm"
                       onClick={() => setSelectedBooking(booking)}
                     >
                       View

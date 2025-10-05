@@ -59,7 +59,7 @@ const ServicesSection = () => {
                 <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
                 <div className="flex items-center justify-between pt-4">
                   <span className="text-2xl font-light text-foreground">{typeof service.price === 'number' ? `$${service.price}` : service.price}</span>
-                  <Link href={`/courses/${service._id}`} className="bg-test-brown-800 text-primary-foreground px-6 py-3 h-auto hover:opacity-90 transition-opacity hover:bg-test-brown-800/80 rounded-full">
+                  <Link href={`/courses/${service._id}`} className="bg-warm-brown-800 text-primary-foreground px-6 py-3 h-auto hover:opacity-90 transition-opacity hover:bg-warm-brown-800/80 rounded-full">
                     Book Now
                   </Link>
                 </div>
@@ -70,7 +70,7 @@ const ServicesSection = () => {
       </div>
 
       <div className='flex items-center justify-center'>
-        <Button className='text-center bg-test-brown-800 py-6 hover:bg-test-brown-800/80 px-7 rounded-full'>See More</Button>
+        <Button className='text-center bg-warm-brown-800 py-6 hover:bg-warm-brown-800/80 px-7 rounded-full'>See More</Button>
       </div>
     </section>
   );

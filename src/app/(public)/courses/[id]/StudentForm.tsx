@@ -132,7 +132,7 @@ export default function StudentForm({ courseId, onSuccess }: { courseId: string;
         <div>
           <label className="block mb-1 font-medium">Profile Image <span className="text-gray-400 text-xs">(optional)</span></label>
           <div className="w-full flex flex-col items-center justify-center">
-            <label htmlFor="profileImage" className="w-full cursor-pointer border-2 border-dashed border-gray-400 rounded-lg flex flex-col items-center justify-center p-4 hover:border-test-brown-800 transition">
+            <label htmlFor="profileImage" className="w-full cursor-pointer border-2 border-dashed border-gray-400 rounded-lg flex flex-col items-center justify-center p-4 hover:border-warm-brown-800 transition">
               {imagePreview ? (
                 <Image src={imagePreview} alt="Preview" className="w-32 h-32 object-cover rounded-full mb-2" width={100}
                   height={100} />
@@ -191,7 +191,7 @@ export default function StudentForm({ courseId, onSuccess }: { courseId: string;
       </div>
       {error && <div className="text-red-600 text-sm">{error}</div>}
       {success && <div className="text-green-600 text-sm">Registration successful!</div>}
-      <button type="submit" className="bg-test-brown-800 hover:bg-test-brown-800/80 rounded-full text-primary-foreground px-6 py-2 transition w-full" disabled={loading}>
+      <button type="submit" className="bg-warm-brown-800 hover:bg-warm-brown-800/80 rounded-full text-primary-foreground px-6 py-2 transition w-full" disabled={loading}>
         {loading ? "Submitting..." : "Submit"}
       </button>
     </form>

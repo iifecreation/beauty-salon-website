@@ -7,10 +7,27 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link';
+import Gallery from '@/components/Gallery';
 
 function Services() {
   const [services, setServices] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const images = [
+    "/images/pexels-rdne-7755224.jpg",
+    "/images/pexels-polina-tankilevitch-3738375.jpg",
+    "/images/pexels-olly-3757942.jpg",
+    "/images/pexels-koolshooters-6628700.jpg",
+    "/images/pexels-karolina-grabowska-6954840.jpg",
+    "/images/pexels-kampus-8834060.jpg",
+    "/images/pexels-enginakyurt-3065170.jpg",
+    "/images/pexels-cottonbro-7582560.jpg",
+    "/images/pexels-cottonbro-3997390.jpg",
+    "/images/pexels-cottonbro-3997383.jpg",
+    "/images/img3.jpg",
+    "/images/img2.jpg",
+    "/images/pexels-cottonbro-3993443.jpg",
+  ];
 
   useEffect(() => {
     fetch('/api/services')
@@ -20,12 +37,12 @@ function Services() {
   }, []);
 
   return (
-    <div className='mx-auto max-w-[1440px] lg:px-16 py-7 px-4 sm:px-10'>
+    <div className=''>
 
       <HeroBanner/>
 
       {/* Services Grid */}
-      <section className="mb-20">
+      <section className="mb-20 mx-auto max-w-[1440px] lg:px-16 py-7 px-4 sm:px-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {loading ? (
             <div className="col-span-3 flex justify-center items-center h-40 text-lg text-muted-foreground">Loading...</div>
@@ -55,7 +72,7 @@ function Services() {
                     <Link
                       href={`/services/${service._id}`}
                       scroll={false}
-                      className="bg-test-brown-800 text-primary-foreground px-6 py-3 h-auto hover:opacity-90 transition-opacity hover:bg-test-brown-800/80 rounded-full"
+                      className="bg-warm-brown-800 text-primary-foreground px-6 py-3 h-auto hover:opacity-90 transition-opacity hover:bg-warm-brown-800/80 rounded-full"
                     >
                       Book Now
                     </Link>
@@ -70,6 +87,8 @@ function Services() {
       <ChooseServices />
 
       <TestimonialsSection />
+
+      <Gallery title='Our Gallery' images={images}  />
     </div>
   )
 }

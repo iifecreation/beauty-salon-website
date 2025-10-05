@@ -6,9 +6,10 @@ import { motion, useAnimation } from "framer-motion";
 
 type GalleryProps = {
   images: string[];
+  title?: string;
 };
 
-export default function StudentGallery({ images }: GalleryProps) {
+export default function Gallery({ images, title }: GalleryProps) {
   const carouselRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
 
@@ -39,7 +40,7 @@ export default function StudentGallery({ images }: GalleryProps) {
     <section className="w-full py-12 md:py-20 bg-white">
       <div className="mx-auto">
         <h2 className="text-[32px] md:text-[48px] font-light mb-8 text-center font-sentient">
-          Meet Our Students
+          {title || "Our Talented Students"}
         </h2>
 
         <div className="relative overflow-hidden">
@@ -53,7 +54,7 @@ export default function StudentGallery({ images }: GalleryProps) {
             {allImages.map((src, idx) => (
               <motion.div
                 key={idx}
-                className="relative w-[80vw] sm:w-[50vw] md:w-[33.33vw] lg:w-[25vw] h-[320px] flex-shrink-0 rounded-xl overflow-hidden shadow-md"
+                className="relative w-[80vw] sm:w-[50vw] md:w-[33.33vw] lg:w-[25vw] h-[420px] flex-shrink-0 rounded-xl overflow-hidden shadow-md"
                 whileHover={{ scale: 1.05 }}
               >
                 <Image

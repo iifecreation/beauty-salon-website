@@ -55,9 +55,9 @@ export default function ChooseAcademy() {
         {reasons.map((item, idx) => (
           <div
             key={idx}
-            className="group rounded-xl p-6 shadow-sm bg-white text-gray-900 transition-transform transform hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg hover:bg-test-brown-800 hover:text-white cursor-pointer space-y-4"
+            className="group rounded-xl p-6 shadow-sm bg-white text-gray-900 transition-transform transform hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg hover:bg-warm-brown-800 hover:text-white cursor-pointer space-y-4"
           >
-            <div className="w-16 h-16 rounded-full mx-auto flex items-center justify-center bg-test-brown-800 transition-colors group-hover:bg-white">
+            <div className="w-16 h-16 rounded-full mx-auto flex items-center justify-center bg-warm-brown-800 transition-colors group-hover:bg-white">
               <svg
                 width="28"
                 height="28"

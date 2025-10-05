@@ -5,6 +5,7 @@ import StudentForm from './StudentForm';
 
 import { cookies } from 'next/headers';
 import Link from 'next/link';
+import OtherCoursesList from '@/components/OtherCoursesList';
 
 async function getCourse(id: string) {
   // Build absolute URL for SSR
@@ -36,7 +37,7 @@ export default async function CoursePage({ params }: { params: { id: string } })
       <nav className="mb-4" aria-label="Breadcrumb">
         <ol className="flex items-center space-x-2 text-sm">
           <li>
-            <Link href="/courses" className="text-test-brown-800 hover:underline flex items-center">
+            <Link href="/courses" className="text-warm-brown-800 hover:underline flex items-center">
               <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
               Courses
             </Link>
@@ -69,6 +70,14 @@ export default async function CoursePage({ params }: { params: { id: string } })
       <div className="mt-4">
         <StudentForm courseId={course._id} />
       </div>
+      {/* Other Courses Section */}
+      <section className="max-w-2xl mx-auto py-12 px-4">
+        <h3 className="text-2xl font-semibold mb-4">Other Courses</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Render other courses client-side to avoid SSR coupling */}
+          <OtherCoursesList currentId={course._id} />
+        </div>
+      </section>
     </div>
   );
 }

@@ -37,7 +37,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ className }) 
   }, [isHovered]);
 
   return (
-    <section className={cn("py-20 bg-test-brown-50/50 max-w-[1440px] mx-auto", className)}>
+    <section className={cn("py-20 bg-warm-brown-50/50 max-w-[1440px] mx-auto", className)}>
       <div className="mb-12">
         <h2 className="text-[32px] md:text-[48px] font-sentient font-light text-center">
           Testimonials

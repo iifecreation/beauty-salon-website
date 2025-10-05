@@ -18,7 +18,7 @@ export default function Home() {
             <h2 className="text-xl md:text-base font-light text-gray-900 mb-4">
               About Us
             </h2>
-            <p className="text-gray-600 text-lg md:text-3xl leading-relaxed font-sentient capitalize">
+            <p className="text-lg md:text-3xl leading-relaxed font-sentient capitalize">
               Delivering excellence <span className="font-semibold">beauty services </span> 
               and <span className="font-semibold">professional training</span> 
             </p>

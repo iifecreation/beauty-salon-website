@@ -98,7 +98,7 @@ export default function BookingForm({ serviceId, onSuccess }: { serviceId: strin
       </div>
       {error && <div className="text-red-600 text-sm">{error}</div>}
       {success && <div className="text-green-600 text-sm">Booking successful!</div>}
-  <button type="submit" className="bg-test-brown-800 hover:bg-test-brown-800/80 rounded-full text-primary-foreground px-6 py-2 transition w-full" disabled={loading}>
+  <button type="submit" className="bg-warm-brown-800 hover:bg-warm-brown-800/80 rounded-full text-primary-foreground px-6 py-2 transition w-full" disabled={loading}>
         {loading ? "Submitting..." : "Book Now"}
       </button>
     </form>

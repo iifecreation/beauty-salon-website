@@ -67,7 +67,7 @@ const Award: React.FC<AwardsBannerProps> = ({ awards, direction = "left", classN
 
   return (
     <section className="py-8 max-w-[1440px] mx-auto">
-      <h2 className={cn("px-4 sm:px-10 md:px-16 font-sentient text-xl md:text-2xl mb-7", className)}>Year {year} <span className="text-test-brown-800">Award</span></h2>
+      <h2 className={cn("px-4 sm:px-10 md:px-16 font-sentient text-xl md:text-2xl mb-7", className)}>Year {year} <span className="text-warm-brown-800">Award</span></h2>
       <div
         className="relative overflow-hidden"
         onMouseEnter={() => setIsHovered(true)}
