@@ -17,7 +17,6 @@ const Courses = () => {
   const images = [
     "/images/22/IMG-20250919-WA0028.jpg",
     "/images/22/IMG-20250919-WA0029.jpg",
-    "/images/22/IMG-20250919-WA0030.jpg",
     "/images/22/IMG-20250919-WA0031.jpg",
     "/images/22/IMG-20250919-WA0032.jpg",
     "/images/22/IMG-20250919-WA0033.jpg",

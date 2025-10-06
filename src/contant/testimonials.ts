@@ -52,7 +52,7 @@ export const testimonials: Testimonial[] = [
     location: "Monterrey, Mexico",
     review:
       "My manicure was flawless. The attention to detail and hygiene practices made me feel safe and valued as a client.",
-    image: "/images/25/IMG-20250920-WA0009.jpg",
+    image: "/images/testimonial3.jpg",
   },
   {
     id: 6,
