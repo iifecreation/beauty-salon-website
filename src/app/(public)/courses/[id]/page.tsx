@@ -18,6 +18,34 @@ async function getCourse(id: string) {
   return await res.json();
 }
 
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const course = await getCourse(params.id);
+  if (!course) {
+    return {
+      title: 'Course Not Found',
+      description: 'The requested course could not be found.',
+    };
+  }
+
+  const base = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000';
+  const url = `${base}/courses/${course._id}`;
+
+  return {
+    title: `${course.title} | Your Beauty Academy`,
+    description: course.description || 'Learn more about our beauty courses and certifications.',
+    openGraph: {
+      title: `${course.title} | Your Beauty Academy`,
+      description: course.description || '',
+      url,
+      images: course.image ? [course.image] : undefined,
+      type: 'article',
+    },
+    alternates: {
+      canonical: url,
+    },
+  };
+}
+
 
 export default async function CoursePage({ params }: { params: { id: string } }) {
   const course = await getCourse(params.id);

@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+
 // Zod schema for validation (matches backend)
 const ContactSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -215,27 +216,38 @@ const ContactSection = () => {
             manicures, and nail fixing. Reach out for bookings, product questions, or special
             events.
           </p>
-
-          {/* Contact Info */}
-          <div className="flex flex-wrap gap-6 mt-10 text-gray-600 justify-center">
-            <div className="flex items-center gap-3">
-              <Phone />
-              <span className="text-base font-medium">+123-456-7890</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <Mail />
-              <span className="text-base font-medium">hello@laluna.com</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <MapPinHouse />
-              <span className="text-base font-medium">123 Beauty Street, City</span>
-            </div>
-          </div>
         </div>
       </div>
 
       {/* Submit + Extra Text */}
-      <div className="flex flex-col items-center justify-center gap-8 mt-12 w-full md:w-3/5 mx-auto ">
+      <div className="flex flex-col items-center justify-center gap-8 w-full md:w-3/5 mx-auto ">
+        {/* Contact Info */}
+        <div className="flex flex-col gap-6 mt-10 text-gray-600 justify-center">
+          <div className="flex items-center flex-col gap-3">
+            <Phone />
+            <div className="divide-y divide-gray-300 flex flex-col gap-2 text-center">
+              <a target="_blank" href="tel:+525510000499" className="text-base font-medium">+52 55 1000 0499</a>
+              <a target="_blank" href="tel:+525581110199" className="text-base font-medium">+52 55 8111 0199</a>
+            </div>
+          </div>
+
+          <div className="flex items-center flex-col gap-3">
+            <Mail />
+            <div className="divide-y divide-gray-300 flex flex-col gap-2 text-center">
+              <a target="_blank" href="mailto:branchheadquartersacadeemy@hot-shot.com" className="text-base font-medium">branchheadquartersacadeemy@hot-shot.com</a>
+              <a target="_blank" href="mailto:beautykeptacademyca@outlook.com" className="text-base font-medium">beautykeptacademyca@outlook.com</a>
+              <a target="_blank" href="mailto:foremanoverseersacademyligtm@worker.com" className="text-base font-medium">foremanoverseersacademyligtm@worker.com</a>
+            </div>
+            
+          </div>
+          <div className="flex items-center flex-col gap-3">
+            <MapPinHouse />
+            <div className="divide-y divide-gray-300 flex flex-col gap-2 text-center lg:max-w-md">
+              <span className="text-base font-medium text-center">C. Concepción Beistegui 2756, Narvarte Poniente, Benito Juárez, 05488 Ciudad de México, CDMX, Mexico</span>
+              <span className="text-base font-medium text-center">Breach, 3834 Main Street Culver City Ca 90232</span>
+            </div>
+          </div>
+        </div>
         <p className="text-gray-500 max-w-2xl text-sm leading-relaxed text-center">
           Our team will respond to your inquiry within 24 hours. Whether it’s about booking a
           nail appointment, getting advice on makeup products, or joining our community, we’re

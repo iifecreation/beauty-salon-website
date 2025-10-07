@@ -45,7 +45,10 @@ const Footer = () => {
       <ul className="space-y-3 text-sm text-gray-300">
         <li className="flex items-center gap-3">
           <HiMapPin className="w-5 h-5 text-primary-foreground" />
-          <span className='flex-2'>C. Concepción Beistegui 2756, Narvarte Poniente, Benito Juárez, 05488 Ciudad de México, CDMX, Mexico</span>
+          <div className='text-wrap break-all divide-y divide-gray-100/50 flex flex-col gap-2 flex-2'>
+            <span className=''>C. Concepción Beistegui 2756, Narvarte Poniente, Benito Juárez, 05488 Ciudad de México, CDMX, Mexico</span>
+            <span>Breach, 3834 Main Street Culver City Ca 90232</span>
+          </div>
         </li>
         <li >
           <a href="mailto:branchheadquartersacadeemy@hot-shot.com" className="flex items-center gap-3">

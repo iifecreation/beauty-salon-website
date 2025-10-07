@@ -4,6 +4,7 @@ import { Nunito } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import PageAnimator from "@/components/PageAnimator";
+import SeoJsonLd from '@/components/SeoJsonLd';
 
 // ✅ Nunito as default font
 const nunito = Nunito({
@@ -56,6 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${nunito.variable}`}>
       <body className="font-nunito antialiased">
+        <SeoJsonLd />
         <Toaster position="top-right" />
         <PageAnimator>
           {children}

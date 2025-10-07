@@ -14,6 +14,34 @@ async function getService(id: string) {
   return await res.json();
 }
 
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const service = await getService(params.id);
+  if (!service) {
+    return {
+      title: 'Service Not Found',
+      description: 'The requested service could not be found.',
+    };
+  }
+
+  const base = process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000';
+  const url = `${base}/services/${service._id}`;
+
+  return {
+    title: `${service.name} | Your Beauty Academy`,
+    description: service.description || 'Learn more about our beauty service.',
+    openGraph: {
+      title: `${service.name} | Your Beauty Academy`,
+      description: service.description || '',
+      url,
+      images: service.image ? [service.image] : undefined,
+      type: 'article',
+    },
+    alternates: {
+      canonical: url,
+    },
+  };
+}
+
 export default async function ServicePage({ params }: { params: { id: string } }) {
   const service = await getService(params.id);
   if (!service) return (
